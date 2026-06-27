@@ -19,6 +19,14 @@ Hệ thống giám sát và quản lý khuôn viên trường học thông minh 
 - Docker & Docker Compose
 - Python 3.11+ (cho dev local)
 
+## Huong dan chay tren may khac
+
+Xem chi tiet cach clone, tao `.env`, build Docker va chay tren may khac tai:
+
+```text
+DOCKER_RUN_GUIDE.md
+```
+
 ## Khởi chạy nhanh
 
 ```bash
