@@ -1,0 +1,200 @@
+﻿smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2059
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2060
+smart-campus-analytics  | [analytics] 📊 Total events: 2060 | Sensors: 1464 | Access: 596 | Alerts: 0
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2061
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2062
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2063
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2064
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2065
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2066
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2067
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2068
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2069
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2070
+smart-campus-analytics  | [analytics] 📊 Total events: 2070 | Sensors: 1470 | Access: 600 | Alerts: 0
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2071
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2072
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2073
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2074
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2075
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2076
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2077
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2078
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2079
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2080
+smart-campus-analytics  | [analytics] 📊 Total events: 2080 | Sensors: 1477 | Access: 603 | Alerts: 0
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2081
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2082
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2083
+smart-campus-analytics  | INFO:     127.0.0.1:59028 - "GET /health HTTP/1.1" 200 OK
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2084
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2085
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2086
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2087
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2088
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2089
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2090
+smart-campus-analytics  | [analytics] 📊 Total events: 2090 | Sensors: 1484 | Access: 606 | Alerts: 0
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2091
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2092
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2093
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2094
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2095
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2096
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2097
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2098
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2099
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2100
+smart-campus-analytics  | [analytics] 📊 Total events: 2100 | Sensors: 1492 | Access: 608 | Alerts: 0
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2101
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2102
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2103
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2104
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2105
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2106
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2107
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2108
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2109
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2110
+smart-campus-analytics  | [analytics] 📊 Total events: 2110 | Sensors: 1499 | Access: 611 | Alerts: 0
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2111
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2112
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2113
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2114
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2115
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2116
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2117
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2118
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2119
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2120
+smart-campus-analytics  | [analytics] 📊 Total events: 2120 | Sensors: 1505 | Access: 615 | Alerts: 0
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2121
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2122
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2123
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2124
+smart-campus-analytics  | INFO:     127.0.0.1:43148 - "GET /health HTTP/1.1" 200 OK
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2125
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2126
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2127
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2128
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2129
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2130
+smart-campus-analytics  | [analytics] 📊 Total events: 2130 | Sensors: 1514 | Access: 616 | Alerts: 0
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2131
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2132
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2133
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2134
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2135
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2136
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2137
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2138
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2139
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2140
+smart-campus-analytics  | [analytics] 📊 Total events: 2140 | Sensors: 1520 | Access: 620 | Alerts: 0
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2141
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2142
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2143
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2144
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2145
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2146
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2147
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2148
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2149
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2150
+smart-campus-analytics  | [analytics] 📊 Total events: 2150 | Sensors: 1527 | Access: 623 | Alerts: 0
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2151
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2152
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2153
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2154
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2155
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2156
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2157
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2158
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2159
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2160
+smart-campus-analytics  | [analytics] 📊 Total events: 2160 | Sensors: 1534 | Access: 626 | Alerts: 0
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2161
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2162
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2163
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2164
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2165
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2166
+smart-campus-analytics  | INFO:     127.0.0.1:46506 - "GET /health HTTP/1.1" 200 OK
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2167
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2168
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2169
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2170
+smart-campus-analytics  | [analytics] 📊 Total events: 2170 | Sensors: 1542 | Access: 628 | Alerts: 0
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2171
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2172
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2173
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2174
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2175
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2176
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2177
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2178
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2179
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2180
+smart-campus-analytics  | [analytics] 📊 Total events: 2180 | Sensors: 1549 | Access: 631 | Alerts: 0
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2181
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2182
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2183
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2184
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2185
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2186
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2187
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2188
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2189
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2190
+smart-campus-analytics  | [analytics] 📊 Total events: 2190 | Sensors: 1555 | Access: 635 | Alerts: 0
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2191
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2192
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2193
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2194
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2195
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2196
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2197
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2198
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2199
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2200
+smart-campus-analytics  | [analytics] 📊 Total events: 2200 | Sensors: 1561 | Access: 639 | Alerts: 0
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2201
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2202
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2203
+smart-campus-analytics  | INFO:     127.0.0.1:43458 - "GET /health HTTP/1.1" 200 OK
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2204
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2205
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2206
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2207
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2208
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2209
+smart-campus-analytics  | INFO:     172.20.0.1:42648 - "GET /health HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42650 - "GET /api/v1/metrics HTTP/1.1" 200 OK
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2210
+smart-campus-analytics  | [analytics] 📊 Total events: 2210 | Sensors: 1570 | Access: 640 | Alerts: 0
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2211
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2212
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2213
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2214
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2215
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2216
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2217
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2218
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2219
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2220
+smart-campus-analytics  | [analytics] 📊 Total events: 2220 | Sensors: 1577 | Access: 643 | Alerts: 0
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2221
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2222
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2223
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2224
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2225
+smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=2226
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2227
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2228
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2229
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2230
+smart-campus-analytics  | [analytics] 📊 Total events: 2230 | Sensors: 1583 | Access: 647 | Alerts: 0
+smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2231
+smart-campus-analytics  | INFO:     172.20.0.1:39796 - "GET /health HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:39804 - "GET /api/v1/metrics HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:39808 - "GET /api/v1/events/recent?limit=10 HTTP/1.1" 200 OK

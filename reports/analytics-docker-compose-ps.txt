@@ -1,0 +1,2 @@
+﻿NAME                     IMAGE                   COMMAND                  SERVICE     CREATED          STATUS                    PORTS
+smart-campus-analytics   dv_ketnoi_a-analytics   "sh -c 'uvicorn main…"   analytics   27 minutes ago   Up 27 minutes (healthy)   0.0.0.0:8000->8000/tcp, [::]:8000->8000/tcp

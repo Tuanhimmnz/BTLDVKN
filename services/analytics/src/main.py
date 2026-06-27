@@ -47,7 +47,9 @@ METRICS = {
     "warning_count": 0,
     "normal_count": 0,
     "sensor_error_count": 0,
+    "invalid_device_count": 0,
     "low_battery_count": 0,
+    "invalid_payload_count": 0,
 }
 TEMP_BY_ROOM: Dict[str, List[float]] = defaultdict(list)
 HUMIDITY_BY_ROOM: Dict[str, List[float]] = defaultdict(list)
@@ -73,15 +75,22 @@ def now_iso() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
+def event_value(event: dict, *keys: str, default=None):
+    for key in keys:
+        if key in event:
+            return event[key]
+    return default
+
+
 # ── Event processors ──
 def process_sensor_event(event: dict):
     METRICS["sensor_events"] += 1
-    evt_status = event.get("status", "normal")
+    evt_status = event_value(event, "status", default="normal")
     METRICS[f"{evt_status}_count"] = METRICS.get(f"{evt_status}_count", 0) + 1
 
-    location = event.get("location", "Unknown")
-    temp = event.get("temperature_c")
-    humidity = event.get("humidity_percent")
+    location = event_value(event, "location", default="Unknown")
+    temp = event_value(event, "temperature_c", "temperatureC")
+    humidity = event_value(event, "humidity_percent", "humidityPercent")
     if temp is not None:
         TEMP_BY_ROOM[location].append(temp)
         # Giữ tối đa 1000 giá trị gần nhất
@@ -92,14 +101,14 @@ def process_sensor_event(event: dict):
         if len(HUMIDITY_BY_ROOM[location]) > 1000:
             HUMIDITY_BY_ROOM[location] = HUMIDITY_BY_ROOM[location][-500:]
 
-    battery = event.get("battery_percent", 100)
+    battery = event_value(event, "battery_percent", "batteryPercent", default=100)
     if battery is not None and battery < 20:
         METRICS["low_battery_count"] += 1
 
 
 def process_access_event(event: dict):
     METRICS["access_events"] += 1
-    result = event.get("access_result", "")
+    result = event_value(event, "access_result", "accessResult", default="")
     if result == "granted":
         METRICS["access_granted"] += 1
     elif result == "denied":
@@ -148,6 +157,7 @@ def start_mqtt_client():
                 elif message.topic == TOPIC_CORE_ALERT:
                     process_core_alert(event)
 
+                print(f"[{SERVICE_NAME}] Received {message.topic}: total={MQTT_STATUS['message_count']}")
                 total = sum([METRICS["sensor_events"], METRICS["access_events"],
                              METRICS["camera_events"], METRICS["core_alerts"]])
                 if total % 10 == 0:
@@ -155,6 +165,7 @@ def start_mqtt_client():
                           f"Sensors: {METRICS['sensor_events']} | Access: {METRICS['access_events']} | "
                           f"Alerts: {METRICS['core_alerts']}")
             except Exception as e:
+                METRICS["invalid_payload_count"] += 1
                 print(f"[{SERVICE_NAME}] ❌ Error: {e}")
 
         client = mqtt_client.Client(protocol=mqtt_client.MQTTv5)
