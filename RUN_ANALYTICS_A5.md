@@ -79,6 +79,12 @@ Kiem tra health:
 curl.exe -s http://localhost:8000/health
 ```
 
+Mo dashboard HTML:
+
+```text
+http://localhost:8000/dashboard
+```
+
 Kiem tra log dang nhan MQTT:
 
 ```powershell
@@ -155,6 +161,34 @@ Noi voi thay:
 ```text
 Log cho thay A5 subscribe 4 topic va xu ly tung message.
 Moi lan nhan event, service in ra topic va tong so message da nhan.
+```
+
+### 3.5. Dashboard HTML
+
+Mo trinh duyet:
+
+```text
+http://localhost:8000/dashboard
+```
+
+Neu chay tren may khac/Radmin:
+
+```text
+http://<IP_MAY_A5>:8000/dashboard
+```
+
+Dashboard tu dong goi:
+
+```text
+GET /health
+GET /api/v1/metrics
+GET /api/v1/events/recent
+```
+
+Token mac dinh:
+
+```text
+smart-campus-dev-token-2026
 ```
 
 ## 4. Luu minh chung truoc khi demo
@@ -251,4 +285,3 @@ docker compose -f docker-compose.analytics.yml down
 ```
 
 Neu dang chuan bi cham, khong chay lenh `down`; cu de container chay de `total_events` tiep tuc tang.
-

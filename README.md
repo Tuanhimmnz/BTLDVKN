@@ -27,6 +27,18 @@ Xem chi tiet cach clone, tao `.env`, build Docker va chay tren may khac tai:
 DOCKER_RUN_GUIDE.md
 ```
 
+Code moi cua A5 duoc day tren branch:
+
+```text
+group-a5-analytics
+```
+
+Dashboard A5 sau khi chay Docker:
+
+```text
+http://localhost:8000/dashboard
+```
+
 ## Khởi chạy nhanh
 
 ```bash

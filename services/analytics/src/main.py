@@ -9,14 +9,17 @@ import ssl
 import threading
 from collections import defaultdict
 from datetime import datetime, timezone
+from pathlib import Path
 from typing import Dict, List, Optional
 
 from fastapi import Depends, FastAPI, Header, HTTPException
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 
 SERVICE_NAME = os.getenv("SERVICE_NAME", "analytics")
 SERVICE_VERSION = os.getenv("SERVICE_VERSION", "1.0.0")
 AUTH_TOKEN = os.getenv("AUTH_TOKEN", "smart-campus-dev-token-2026")
+DASHBOARD_FILE = Path(__file__).with_name("dashboard.html")
 
 # ── MQTT Config ──
 MQTT_HOST = os.getenv("MQTT_BROKER_HOST", "f6f78e87db4a4c189dd3d706745a5e93.s1.eu.hivemq.cloud")
@@ -188,6 +191,16 @@ async def startup():
 
 
 # ── REST Endpoints ──
+
+@app.get("/", include_in_schema=False)
+def dashboard_home():
+    return FileResponse(DASHBOARD_FILE)
+
+
+@app.get("/dashboard", include_in_schema=False)
+def dashboard_page():
+    return FileResponse(DASHBOARD_FILE)
+
 
 @app.get("/health", response_model=HealthResponse)
 def health():

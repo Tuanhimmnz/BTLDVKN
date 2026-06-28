@@ -27,7 +27,15 @@ git clone https://github.com/Tuanhimmnz/BTLDVKN.git
 cd BTLDVKN
 ```
 
-Neu repo dang dung branch khac, xem branch:
+Code moi cua nhom A5 nam tren branch `group-a5-analytics`.
+Sau khi clone, checkout branch nay:
+
+```powershell
+git fetch origin
+git checkout group-a5-analytics
+```
+
+Neu muon xem tat ca branch:
 
 ```powershell
 git branch -a
@@ -97,6 +105,26 @@ curl.exe http://localhost:8000/health
 
 Neu da doi `ANALYTICS_PUBLIC_PORT`, thay `8000` bang port moi.
 
+Mo dashboard HTML tren trinh duyet:
+
+```text
+http://localhost:8000/dashboard
+```
+
+Hoac:
+
+```text
+http://localhost:8000/
+```
+
+Dashboard mac dinh dung token:
+
+```text
+smart-campus-dev-token-2026
+```
+
+Neu ban doi `AUTH_TOKEN` trong `.env`, nhap token moi vao o token tren dashboard roi bam `Save`.
+
 Xem log:
 
 ```powershell
@@ -130,6 +158,12 @@ curl.exe -H "Authorization: Bearer smart-campus-dev-token-2026" "http://localhos
 ```
 
 Neu doi `AUTH_TOKEN` trong `.env`, thay token trong lenh curl bang token moi.
+
+Mo dashboard bang trinh duyet:
+
+```text
+http://localhost:8000/dashboard
+```
 
 ## 6. Cach Build Lai Khi Co Thay Doi Code
 
@@ -302,9 +336,16 @@ AUTH_TOKEN=smart-campus-dev-token-2026
 ```powershell
 git clone https://github.com/Tuanhimmnz/BTLDVKN.git
 cd BTLDVKN
+git checkout group-a5-analytics
 Copy-Item .env.example .env
 docker compose -f docker-compose.analytics.yml up -d --build
 docker compose -f docker-compose.analytics.yml ps
 curl.exe http://localhost:8000/health
 curl.exe -H "Authorization: Bearer smart-campus-dev-token-2026" http://localhost:8000/api/v1/metrics
+```
+
+Mo dashboard:
+
+```text
+http://localhost:8000/dashboard
 ```
