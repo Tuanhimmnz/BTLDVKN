@@ -35,6 +35,7 @@ Anh evidence moi:
 - `reports/report-review/screenshots/04-a5-recent-events.png`
 - `reports/report-review/screenshots/05-a5-live-logs.png`
 - `reports/report-review/screenshots/06-full-compose-build-failure.png`
+- `reports/report-review/screenshots/07-dashboard-chart-fixed.png`
 
 Noi dung Word da duoc trich ra de doi chieu:
 
@@ -59,6 +60,8 @@ Hien tai source da khoi phuc dashboard goc tai `GET /`. Neu bao cao van ghi them
 - Chup anh `http://localhost:8000/`.
 - Chup anh `http://localhost:8000/docs` neu muon minh chung Swagger UI.
 - Neu bao cao noi co bieu do, anh dashboard phai thay ro metric cards/bar chart/recent events.
+- Da sua loi bieu do "Khi hau theo Phong" chi hien cham khong co duong: nguyen nhan la database demo luc do chi co 1 phong nen Chart.js khong co diem thu hai de noi line. HTML da duoc cap nhat de van hien line khi chi co 1 diem, dong thoi data demo da duoc nap lai 6 phong de anh bao cao thay ro 2 duong nhiet do/do am.
+- Anh dung cho bao cao: `reports/report-review/screenshots/07-dashboard-chart-fixed.png`.
 
 ### 3.2. Bao cao claim full 7 service/container nhung repo hien tai khong chay full duoc
 

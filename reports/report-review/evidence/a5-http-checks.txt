@@ -1,0 +1,6 @@
+﻿200  http://26.251.111.241:8010/
+200  http://26.251.111.241:8010/health
+200  http://26.251.111.241:8010/api/v1/dashboard/data
+200  http://localhost:8000/
+200  http://localhost:8000/health
+200  http://localhost:8000/api/v1/dashboard/data

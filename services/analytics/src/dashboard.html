@@ -1092,13 +1092,15 @@
                             data: [],
                             borderColor: COLORS.sensor,
                             backgroundColor: tempGradient,
-                            borderWidth: 3,
+                            borderWidth: 4,
                             pointBackgroundColor: COLORS.sensor,
                             pointBorderColor: '#0b0f19',
-                            pointBorderWidth: 1.5,
-                            pointRadius: 4,
-                            pointHoverRadius: 6,
-                            tension: 0.4,
+                            pointBorderWidth: 2,
+                            pointRadius: (context) => context.chart.data.labels.length <= 2 ? 7 : 5,
+                            pointHoverRadius: 9,
+                            tension: 0.35,
+                            cubicInterpolationMode: 'monotone',
+                            spanGaps: true,
                             fill: true,
                             yAxisID: 'yTemp'
                         },
@@ -1107,13 +1109,15 @@
                             data: [],
                             borderColor: COLORS.primary,
                             backgroundColor: humGradient,
-                            borderWidth: 3,
+                            borderWidth: 4,
                             pointBackgroundColor: COLORS.primary,
                             pointBorderColor: '#0b0f19',
-                            pointBorderWidth: 1.5,
-                            pointRadius: 4,
-                            pointHoverRadius: 6,
-                            tension: 0.4,
+                            pointBorderWidth: 2,
+                            pointRadius: (context) => context.chart.data.labels.length <= 2 ? 7 : 5,
+                            pointHoverRadius: 9,
+                            tension: 0.35,
+                            cubicInterpolationMode: 'monotone',
+                            spanGaps: true,
                             fill: true,
                             yAxisID: 'yHum'
                         }
@@ -1678,9 +1682,12 @@
                     return (temp !== undefined && temp > 0) || (hum !== undefined && hum > 0);
                 });
                 
-                climateChart.data.labels = rooms;
-                climateChart.data.datasets[0].data = rooms.map(r => data.avg_temperature_by_room[r] || 0);
-                climateChart.data.datasets[1].data = rooms.map(r => data.avg_humidity_by_room[r] || 0);
+                const climateRooms = rooms.length === 1 ? [rooms[0], rooms[0]] : rooms;
+                const climateLabels = rooms.length === 1 ? [rooms[0], ' '] : rooms;
+
+                climateChart.data.labels = climateLabels;
+                climateChart.data.datasets[0].data = climateRooms.map(r => data.avg_temperature_by_room[r] || 0);
+                climateChart.data.datasets[1].data = climateRooms.map(r => data.avg_humidity_by_room[r] || 0);
                 climateChart.update();
 
                 // Chart 2: Event shares

@@ -1,79 +1,160 @@
-﻿smart-campus-analytics  | INFO:     Started server process [7]
-smart-campus-analytics  | INFO:     Waiting for application startup.
-smart-campus-analytics  | [analytics] 🚀 Service started
-smart-campus-analytics  | INFO:     Application startup complete.
-smart-campus-analytics  | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-smart-campus-analytics  | [analytics] ✅ Connected to HiveMQ
-smart-campus-analytics  | [analytics] 📡 Subscribed: smart-campus/events/sensor
-smart-campus-analytics  | [analytics] 📡 Subscribed: smart-campus/events/access
-smart-campus-analytics  | [analytics] 📡 Subscribed: smart-campus/events/camera
-smart-campus-analytics  | [analytics] 📡 Subscribed: smart-campus/events/core-alert
-smart-campus-analytics  | INFO:     127.0.0.1:53284 - "GET /health HTTP/1.1" 200 OK
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=1
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=2
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=3
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=4
-smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=5
-smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=6
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=7
-smart-campus-analytics  | INFO:     172.20.0.1:54982 - "GET /health HTTP/1.1" 200 OK
-smart-campus-analytics  | INFO:     172.20.0.1:54988 - "GET /api/v1/metrics HTTP/1.1" 200 OK
-smart-campus-analytics  | INFO:     172.20.0.1:54996 - "GET /api/v1/events/recent?limit=5 HTTP/1.1" 200 OK
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=8
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=9
-smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=10
-smart-campus-analytics  | [analytics] 📊 Total events: 10 | Sensors: 7 | Access: 3 | Alerts: 0
-smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=11
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=12
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=13
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=14
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=15
-smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=16
-smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=17
-smart-campus-analytics  | INFO:     127.0.0.1:33570 - "GET /health HTTP/1.1" 200 OK
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=18
-smart-campus-analytics  | INFO:     172.20.0.1:58494 - "GET /health HTTP/1.1" 200 OK
-smart-campus-analytics  | INFO:     172.20.0.1:58498 - "GET /api/v1/metrics HTTP/1.1" 200 OK
-smart-campus-analytics  | INFO:     172.20.0.1:58510 - "GET /api/v1/events/recent?limit=10 HTTP/1.1" 200 OK
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=19
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=20
-smart-campus-analytics  | [analytics] 📊 Total events: 20 | Sensors: 14 | Access: 6 | Alerts: 0
-smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=21
-smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=22
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=23
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=24
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=25
-smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=26
-smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=27
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=28
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=29
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=30
-smart-campus-analytics  | [analytics] 📊 Total events: 30 | Sensors: 20 | Access: 10 | Alerts: 0
-smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=31
-smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=32
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=33
-smart-campus-analytics  | INFO:     127.0.0.1:45686 - "GET /health HTTP/1.1" 200 OK
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=34
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=35
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=36
-smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=37
-smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=38
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=39
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=40
-smart-campus-analytics  | [analytics] 📊 Total events: 40 | Sensors: 26 | Access: 14 | Alerts: 0
-smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=41
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=42
-smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=43
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=44
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=45
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=46
-smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=47
-smart-campus-analytics  | INFO:     127.0.0.1:51202 - "GET /health HTTP/1.1" 200 OK
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=48
-smart-campus-analytics  | [analytics] Received smart-campus/events/access: total=49
-smart-campus-analytics  | [analytics] Received smart-campus/events/sensor: total=50
-smart-campus-analytics  | [analytics] 📊 Total events: 50 | Sensors: 32 | Access: 18 | Alerts: 0
-smart-campus-analytics  | INFO:     172.20.0.1:52910 - "GET /health HTTP/1.1" 200 OK
-smart-campus-analytics  | INFO:     172.20.0.1:52914 - "GET /api/v1/metrics HTTP/1.1" 200 OK
-smart-campus-analytics  | INFO:     172.20.0.1:52926 - "GET /api/v1/events/recent?limit=10 HTTP/1.1" 200 OK
-
+﻿smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     127.0.0.1:43942 - "GET /health HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | [analytics] 📊 Total events: 30 | Sensors: 6 | Access: 22 | Alerts: 1
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:60882 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     127.0.0.1:38054 - "GET /health HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44336 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /health HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44346 - "GET /api/v1/metrics HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:42466 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/events/recent?limit=12 HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | [analytics] 📊 Total events: 40 | Sensors: 6 | Access: 32 | Alerts: 1
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     127.0.0.1:33624 - "GET /health HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /docs HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /openapi.json HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:49824 - "GET / HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:49830 - "GET /dashboard HTTP/1.1" 404 Not Found
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     127.0.0.1:33314 - "GET /health HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44348 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:44356 - "GET /health HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37634 - "GET /api/v1/events/recent?limit=12 HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37644 - "GET /api/v1/metrics HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | [analytics] 📊 Total events: 50 | Sensors: 6 | Access: 42 | Alerts: 1
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     127.0.0.1:48214 - "GET /health HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:41926 - "GET / HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:41926 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:41926 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:41926 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+smart-campus-analytics  | INFO:     172.20.0.1:41926 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:41926 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     127.0.0.1:40454 - "GET /health HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | [analytics] 📊 Total events: 60 | Sensors: 6 | Access: 52 | Alerts: 1
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /health HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:58100 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:37652 - "GET /api/v1/events/recent?limit=12 HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:58106 - "GET /api/v1/metrics HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:58116 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:58116 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:58116 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:58116 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:58116 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:58116 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:58116 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     127.0.0.1:52820 - "GET /health HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:58116 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:58116 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:60640 - "GET /health HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:60652 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:60658 - "GET /api/v1/metrics HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:60674 - "GET /api/v1/events/recent?limit=20 HTTP/1.1" 200 OK
+smart-campus-analytics  | INFO:     172.20.0.1:58116 - "GET /api/v1/dashboard/data HTTP/1.1" 200 OK
