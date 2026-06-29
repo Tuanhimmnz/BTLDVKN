@@ -8,8 +8,8 @@ Repo review: `C:\Users\linzi\Downloads\lab4\DV_KetNoi_A`
 
 ## 1. Ket Qua Kiem Tra Nhanh
 
-- Da go phan dashboard HTML da them truoc do de `main.py` quay ve API goc.
-- Da xoa `services/analytics/src/dashboard.html`.
+- Dashboard HTML da duoc khoi phuc lai tai `services/analytics/src/dashboard.html`.
+- `main.py` dang phuc vu giao dien tai `GET /` va `GET /dashboard`.
 - `main.py` compile thanh cong bang `python -m compileall services/analytics/src/main.py`.
 - A5 standalone chay thanh cong bang `docker compose -f docker-compose.analytics.yml up -d --build analytics`.
 - Container `smart-campus-analytics` dang `healthy`, port `8000 -> 8000`.
@@ -46,7 +46,7 @@ Noi dung Word da duoc trich ra de doi chieu:
 
 ## 3. Loi Nghiem Trong Can Sua Truoc
 
-### 3.1. Bao cao dang noi co dashboard web nhung code da quay ve ban goc
+### 3.1. Dashboard web da co lai, can bo sung anh minh chung
 
 Trong Word co muc:
 
@@ -54,12 +54,11 @@ Trong Word co muc:
 - Block `[222]`: noi A5 co giao dien dashboard web tai `GET /` va `GET /dashboard`, phuc vu bang `FileResponse`.
 - Block `[223]` den `[229]`: mo ta card, chart, recent events, auto refresh.
 
-Hien tai source da bo dashboard theo yeu cau. Neu giu ban goc thi phai sua bao cao:
+Hien tai source da khoi phuc dashboard. Vi vay co the giu muc nay, nhung can bo sung evidence:
 
-- Xoa muc `4.5. Dashboard giao dien web`.
-- Thay bang muc ngan: `4.5. OpenAPI/Swagger UI va cong cu kiem thu`.
-- Noi ro giao dien xem API la FastAPI Swagger UI tai `GET /docs`, khong phai dashboard HTML rieng.
-- Khong nhac `GET /dashboard`, `GET /`, `FileResponse`, HTML/CSS/JS single-page.
+- Chup anh `http://localhost:8000/dashboard`.
+- Chup anh `http://localhost:8000/docs` neu muon minh chung Swagger UI.
+- Neu bao cao noi co bieu do, anh dashboard phai thay ro metric cards/bar chart/recent events.
 
 ### 3.2. Bao cao claim full 7 service/container nhung repo hien tai khong chay full duoc
 
@@ -366,7 +365,7 @@ services/notification
 
 Thu tu sua nen lam:
 
-1. Xoa muc `4.5 Dashboard giao dien web`, thay bang `FastAPI Swagger UI /docs`.
+1. Giu muc `4.5 Dashboard giao dien web`, nhung chen anh dashboard that tu `http://localhost:8000/dashboard`.
 2. Sua toan bo claim "full 7 service/container/logs" thanh "A5 standalone" hoac bo neu khong co source day du.
 3. Cap nhat bang evidence VII theo anh moi trong `reports/report-review/screenshots`.
 4. Cap nhat so lieu theo evidence moi hoac phuc hoi evidence cu neu muon giu moc 2231 events.
@@ -379,4 +378,4 @@ Thu tu sua nen lam:
 
 ## 8. Ket Luan Review
 
-Phan code A5 standalone hien chay duoc va co evidence moi. Loi lon nhat khong nam o API, ma nam o bao cao/evidence: bao cao dang claim nhieu thu khong khop voi branch hien tai, dac biet dashboard HTML, full 7 service, so lieu 2231 events, va anh Swagger cua service khac. Neu sua cac diem tren, bao cao se chat che hon va it bi giang vien bat loi hon.
+Phan code A5 standalone hien chay duoc va co dashboard HTML. Loi lon nhat con lai nam o bao cao/evidence: bao cao dang claim full 7 service, so lieu 2231 events va anh Swagger cua service khac chua khop voi branch hien tai. Neu sua cac diem tren, bao cao se chat che hon va it bi giang vien bat loi hon.

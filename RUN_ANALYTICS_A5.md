@@ -79,6 +79,12 @@ Kiem tra health:
 curl.exe -s http://localhost:8000/health
 ```
 
+Mo dashboard HTML:
+
+```text
+http://localhost:8000/dashboard
+```
+
 Mo API docs:
 
 ```text
@@ -163,21 +169,21 @@ Log cho thay A5 subscribe 4 topic va xu ly tung message.
 Moi lan nhan event, service in ra topic va tong so message da nhan.
 ```
 
-### 3.5. API docs
+### 3.5. Dashboard HTML
 
 Mo trinh duyet:
 
 ```text
-http://localhost:8000/docs
+http://localhost:8000/dashboard
 ```
 
 Neu chay tren may khac/Radmin:
 
 ```text
-http://<IP_MAY_A5>:8000/docs
+http://<IP_MAY_A5>:8000/dashboard
 ```
 
-API docs hien cac endpoint:
+Dashboard tu dong goi:
 
 ```text
 GET /health

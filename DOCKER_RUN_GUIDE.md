@@ -105,7 +105,13 @@ curl.exe http://localhost:8000/health
 
 Neu da doi `ANALYTICS_PUBLIC_PORT`, thay `8000` bang port moi.
 
-Mo API docs tren trinh duyet:
+Mo dashboard HTML tren trinh duyet:
+
+```text
+http://localhost:8000/dashboard
+```
+
+API docs:
 
 ```text
 http://localhost:8000/docs
@@ -159,10 +165,10 @@ curl.exe -H "Authorization: Bearer smart-campus-dev-token-2026" "http://localhos
 
 Neu doi `AUTH_TOKEN` trong `.env`, thay token trong lenh curl bang token moi.
 
-Mo API docs bang trinh duyet:
+Mo dashboard bang trinh duyet:
 
 ```text
-http://localhost:8000/docs
+http://localhost:8000/dashboard
 ```
 
 ## 6. Cach Build Lai Khi Co Thay Doi Code
@@ -344,8 +350,8 @@ curl.exe http://localhost:8000/health
 curl.exe -H "Authorization: Bearer smart-campus-dev-token-2026" http://localhost:8000/api/v1/metrics
 ```
 
-Mo API docs:
+Mo dashboard:
 
 ```text
-http://localhost:8000/docs
+http://localhost:8000/dashboard
 ```
