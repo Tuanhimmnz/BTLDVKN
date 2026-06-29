@@ -36,7 +36,7 @@ group-a5-analytics
 Sau khi chay Docker, mo dashboard A5:
 
 ```text
-http://localhost:8000/dashboard
+http://localhost:8000/
 ```
 
 API docs:

@@ -108,7 +108,7 @@ Neu da doi `ANALYTICS_PUBLIC_PORT`, thay `8000` bang port moi.
 Mo dashboard HTML tren trinh duyet:
 
 ```text
-http://localhost:8000/dashboard
+http://localhost:8000/
 ```
 
 API docs:
@@ -168,7 +168,7 @@ Neu doi `AUTH_TOKEN` trong `.env`, thay token trong lenh curl bang token moi.
 Mo dashboard bang trinh duyet:
 
 ```text
-http://localhost:8000/dashboard
+http://localhost:8000/
 ```
 
 ## 6. Cach Build Lai Khi Co Thay Doi Code
@@ -353,5 +353,5 @@ curl.exe -H "Authorization: Bearer smart-campus-dev-token-2026" http://localhost
 Mo dashboard:
 
 ```text
-http://localhost:8000/dashboard
+http://localhost:8000/
 ```

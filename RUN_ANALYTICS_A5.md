@@ -82,7 +82,7 @@ curl.exe -s http://localhost:8000/health
 Mo dashboard HTML:
 
 ```text
-http://localhost:8000/dashboard
+http://localhost:8000/
 ```
 
 Mo API docs:
@@ -174,13 +174,13 @@ Moi lan nhan event, service in ra topic va tong so message da nhan.
 Mo trinh duyet:
 
 ```text
-http://localhost:8000/dashboard
+http://localhost:8000/
 ```
 
 Neu chay tren may khac/Radmin:
 
 ```text
-http://<IP_MAY_A5>:8000/dashboard
+http://<IP_MAY_A5>:8000/
 ```
 
 Dashboard tu dong goi:

@@ -9,7 +9,7 @@ Repo review: `C:\Users\linzi\Downloads\lab4\DV_KetNoi_A`
 ## 1. Ket Qua Kiem Tra Nhanh
 
 - Dashboard HTML da duoc khoi phuc lai tai `services/analytics/src/dashboard.html`.
-- `main.py` dang phuc vu giao dien tai `GET /` va `GET /dashboard`.
+- `main.py` ban goc dang phuc vu giao dien tai `GET /`.
 - `main.py` compile thanh cong bang `python -m compileall services/analytics/src/main.py`.
 - A5 standalone chay thanh cong bang `docker compose -f docker-compose.analytics.yml up -d --build analytics`.
 - Container `smart-campus-analytics` dang `healthy`, port `8000 -> 8000`.
@@ -51,12 +51,12 @@ Noi dung Word da duoc trich ra de doi chieu:
 Trong Word co muc:
 
 - Block `[221]`: `4.5. Dashboard giao dien web`
-- Block `[222]`: noi A5 co giao dien dashboard web tai `GET /` va `GET /dashboard`, phuc vu bang `FileResponse`.
+- Block `[222]`: noi A5 co giao dien dashboard web tai `GET /` va `GET /dashboard`.
 - Block `[223]` den `[229]`: mo ta card, chart, recent events, auto refresh.
 
-Hien tai source da khoi phuc dashboard. Vi vay co the giu muc nay, nhung can bo sung evidence:
+Hien tai source da khoi phuc dashboard goc tai `GET /`. Neu bao cao van ghi them `GET /dashboard`, can sua thanh `GET /` hoac them route alias trong code.
 
-- Chup anh `http://localhost:8000/dashboard`.
+- Chup anh `http://localhost:8000/`.
 - Chup anh `http://localhost:8000/docs` neu muon minh chung Swagger UI.
 - Neu bao cao noi co bieu do, anh dashboard phai thay ro metric cards/bar chart/recent events.
 
@@ -365,7 +365,7 @@ services/notification
 
 Thu tu sua nen lam:
 
-1. Giu muc `4.5 Dashboard giao dien web`, nhung chen anh dashboard that tu `http://localhost:8000/dashboard`.
+1. Giu muc `4.5 Dashboard giao dien web`, nhung chen anh dashboard that tu `http://localhost:8000/`.
 2. Sua toan bo claim "full 7 service/container/logs" thanh "A5 standalone" hoac bo neu khong co source day du.
 3. Cap nhat bang evidence VII theo anh moi trong `reports/report-review/screenshots`.
 4. Cap nhat so lieu theo evidence moi hoac phuc hoi evidence cu neu muon giu moc 2231 events.
