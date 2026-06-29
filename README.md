@@ -33,10 +33,11 @@ Code moi cua A5 duoc day tren branch:
 group-a5-analytics
 ```
 
-Dashboard A5 sau khi chay Docker:
+Sau khi chay Docker, kiem tra API A5:
 
 ```text
-http://localhost:8000/dashboard
+http://localhost:8000/health
+http://localhost:8000/docs
 ```
 
 ## Khởi chạy nhanh

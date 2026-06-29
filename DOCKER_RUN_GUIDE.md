@@ -105,25 +105,25 @@ curl.exe http://localhost:8000/health
 
 Neu da doi `ANALYTICS_PUBLIC_PORT`, thay `8000` bang port moi.
 
-Mo dashboard HTML tren trinh duyet:
+Mo API docs tren trinh duyet:
 
 ```text
-http://localhost:8000/dashboard
+http://localhost:8000/docs
 ```
 
-Hoac:
+Kiem tra nhanh endpoint health:
 
 ```text
-http://localhost:8000/
+http://localhost:8000/health
 ```
 
-Dashboard mac dinh dung token:
+Token mac dinh de goi endpoint metrics/recent events:
 
 ```text
 smart-campus-dev-token-2026
 ```
 
-Neu ban doi `AUTH_TOKEN` trong `.env`, nhap token moi vao o token tren dashboard roi bam `Save`.
+Neu ban doi `AUTH_TOKEN` trong `.env`, thay token trong lenh curl/Postman bang token moi.
 
 Xem log:
 
@@ -159,10 +159,10 @@ curl.exe -H "Authorization: Bearer smart-campus-dev-token-2026" "http://localhos
 
 Neu doi `AUTH_TOKEN` trong `.env`, thay token trong lenh curl bang token moi.
 
-Mo dashboard bang trinh duyet:
+Mo API docs bang trinh duyet:
 
 ```text
-http://localhost:8000/dashboard
+http://localhost:8000/docs
 ```
 
 ## 6. Cach Build Lai Khi Co Thay Doi Code
@@ -344,8 +344,8 @@ curl.exe http://localhost:8000/health
 curl.exe -H "Authorization: Bearer smart-campus-dev-token-2026" http://localhost:8000/api/v1/metrics
 ```
 
-Mo dashboard:
+Mo API docs:
 
 ```text
-http://localhost:8000/dashboard
+http://localhost:8000/docs
 ```

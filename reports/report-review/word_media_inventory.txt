@@ -1,0 +1,5 @@
+word/media/image1.png | 80038 bytes | PNG | 367x366
+word/media/image2.png | 31201 bytes | PNG | 1200x312
+word/media/image3.png | 49108 bytes | PNG | 1280x800
+word/media/image4.png | 39189 bytes | PNG | 1280x800
+word/media/image5.png | 49584 bytes | PNG | 1280x800

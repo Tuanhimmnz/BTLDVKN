@@ -1,0 +1,668 @@
+[001] BỘ GIÁO DỤC VÀ ĐÀO TẠO
+[002] TRƯỜNG ĐẠI HỌC ĐẠI NAM
+[003] BÀI TẬP LỚN
+[004] TÊN HỌC PHẦN 
+DỊCH VỤ KẾT NỐI VÀ CÔNG NGHỆ NỀN TẢNG
+[005] ĐỀ TÀI: XÂY DỰNG DỊCH VỤ TỔNG HỢP
+[006] VÀ PHÂN TÍCH DỮ LIỆU
+[007] Giáo viên hướng dẫn: ThS. Lê Thái Bảo
+[008] Sinh viên thực hiện: Nguyễn Thành Trung
+[009] {TABLE}
+STT | Mã SV | Họ và tên | Lớp
+1 | 1771020688 | Nguyễn Thành Trung | CNTT 17-08
+2 | 1771020703 | Đỗ Văn Trường | CNTT 17-08
+3 | 1771020705 | Phạm Đình Minh Trưởng | CNTT 17-08
+4 | 1771020715 | Dương Trọng Tuấn | CNTT 17-08
+[010] Hà Nội, năm 2026
+[011] BỘ GIÁO DỤC VÀ ĐÀO TẠO
+[012] TRƯỜNG ĐẠI HỌC ĐẠI NAM
+[013] BÀI TẬP LỚN
+[014] TÊN HỌC PHẦN 
+DỊCH VỤ KẾT NỐI VÀ CÔNG NGHỆ NỀN TẢNG
+[015] ĐỀ TÀI: XÂY DỰNG DỊCH VỤ TỔNG HỢP
+[016] VÀ PHÂN TÍCH DỮ LIỆU
+[017] {TABLE}
+STT | Mã Sinh Viên | Họ và Tên | Ngày Sinh | Điểm
+ |  |  |  | Bằng Số | Bằng Chữ
+1 | 1771020688 | Nguyễn Thành Trung | 04/02/2005 |  | 
+2 | 1771020703 | Đỗ Văn Trường | 28/07/2005 |  | 
+3 | 1771020705 | Phạm Đình Minh Trưởng | 30/04/2005 |  | 
+4 | 1771020715 | Dương Trọng Tuấn | 02/04/2004 |  | 
+[018] {TABLE}
+CÁN BỘ CHẤM THI 1 | CÁN BỘ CHẤM THI 2
+[019] Hà Nội, năm 2026
+[020] {Heading1} I. GIỚI THIỆU
+[021] {Heading2} 1.1. Bối cảnh
+[022] Smart Campus Operations Platform (Product A) là hệ thống giám sát và quản lý khuôn viên trường học thông minh được xây dựng theo kiến trúc microservice. Hệ thống gồm 7 service hoạt động độc lập nhưng giao tiếp chặt chẽ qua hai cơ chế: REST API đồng bộ (sync) và MQTT bất đồng bộ (async) thông qua HiveMQ Cloud Broker.
+[023] Trong bối cảnh chuyển đổi số giáo dục, các trường đại học cần một hệ thống có khả năng thu thập dữ liệu môi trường (nhiệt độ, độ ẩm), kiểm soát ra vào, phân tích hành vi và ra quyết định nghiệp vụ tự động. Product A được thiết kế để đáp ứng nhu cầu đó với khả năng mở rộng và tích hợp liên nhóm theo chuẩn hóa contract.
+[024] A5 Analytics Service đóng vai trò "trung tâm quan sát" (Observability Hub) của toàn bộ hệ thống: lắng nghe mọi sự kiện từ các service khác qua MQTT, tổng hợp chỉ số KPI, và cung cấp REST API cho dashboard quản trị.
+[025] {Heading2} 1.2. Mục tiêu của service
+[026] A5 Analytics Service ra đời để giải quyết bài toán: "Làm thế nào để ban quản trị nhà trường có thể theo dõi toàn bộ hoạt động của khuôn viên theo thời gian thực — từ nhiệt độ phòng học, tình trạng ra vào cổng, đến số lượng cảnh báo an ninh — mà không cần truy cập từng service riêng lẻ?"
+[027] Service đóng vai trò điểm tập trung dữ liệu thống kê duy nhất: thu thập sự kiện từ A1 (IoT), A3 (Access Gate), A2 (Camera), A6 (Core Business), tính toán KPI và trả về dashboard tổng hợp.
+[028] {Heading2} 1.3. Phạm vi
+[029] Service CÓ làm:
+[030] {ListParagraph} Đăng ký lắng nghe 4 MQTT topic: smart-campus/events/sensor, smart-campus/events/access, smart-campus/events/camera, smart-campus/events/core-alert
+[031] {ListParagraph} Đếm và phân loại sự kiện theo từng loại (sensor / access / camera / alert)
+[032] {ListParagraph} Tính toán nhiệt độ và độ ẩm trung bình theo từng phòng
+[033] {ListParagraph} Tính tỷ lệ từ chối truy cập (access_deny_rate) và số lượng nguy hiểm/cảnh báo
+[034] {ListParagraph} Phát hiện thiết bị pin yếu (battery < 20%) và payload không hợp lệ
+[035] {ListParagraph} Cung cấp 4 REST endpoint: /health, /api/v1/metrics, /api/v1/metrics/{name}, /api/v1/events/recent
+[036] {ListParagraph} Lưu lịch sử tối đa 500 sự kiện MQTT gần nhất trong bộ nhớ
+[037] Service KHÔNG làm:
+[038] {ListParagraph} Không ghi dữ liệu xuống database hoặc file (in-memory only)
+[039] {ListParagraph} Không publish MQTT message đến bất kỳ topic nào
+[040] {ListParagraph} Không gọi REST API của service khác
+[041] {ListParagraph} Không thực hiện xác thực sinh viên hoặc quyết định nghiệp vụ (do A6 đảm nhận)
+[042] {ListParagraph} Không xử lý luồng video camera trực tiếp
+[043] {Heading1} II. PHÂN TÍCH NGHIỆP VỤ
+[044] Đây là phần trọng tâm xác định A5 Analytics Service hiểu nghiệp vụ thực sự. Service không chỉ đơn thuần chuyển tiếp dữ liệu mà thực hiện tổng hợp, phân loại và tính toán KPI có giá trị nghiệp vụ cho quản trị viên.
+[045] {Heading2} 2.1. Vai trò nghiệp vụ
+[046] A5 Analytics đóng vai trò "Bộ phận Thống kê và Giám sát Khuôn viên" trong hệ thống Smart Campus. Về nghiệp vụ, đây tương đương phòng điều hành trung tâm — nơi tổng hợp tất cả báo cáo từ các bộ phận (IoT, bảo vệ, camera, vận hành) và trình bày dưới dạng dashboard KPI cho lãnh đạo trường.
+[047] Cụ thể, service thực hiện 3 vai trò nghiệp vụ chính: (1) Giám sát môi trường — theo dõi nhiệt độ và độ ẩm từng phòng theo thời gian thực, phát hiện tình trạng nguy hiểm (danger) hoặc cảnh báo (warning); (2) Giám sát an ninh — đếm lượt ra vào, tính tỷ lệ từ chối thẻ RFID, phát hiện thẻ lạ hoặc không hợp lệ; (3) Giám sát hạ tầng — theo dõi số lượng thiết bị pin yếu, payload lỗi, và kết nối MQTT broker.
+[048] {Heading2} 2.2. Vị trí trong kiến trúc hệ thống
+[049] A5 Analytics nằm ở lớp cuối cùng của luồng dữ liệu trong kiến trúc Product A. Service chỉ nhận dữ liệu (MQTT consumer) và cung cấp API đọc (REST provider), không tham gia vào luồng ra quyết định.
+[050] {TABLE}
+Quan hệ | Nhóm đối tác | Mục đích | Cơ chế
+Nhận từ | A1: IoT Ingestion | Sự kiện cảm biến môi trường (sensor events) | MQTT async
+Nhận từ | A3: Access Gate | Sự kiện quẹt thẻ ra vào cổng (access events) | MQTT async
+Nhận từ | A2: Camera Stream | Sự kiện phát hiện chuyển động (camera events) | MQTT async
+Nhận từ | A6: Core Business | Cảnh báo nghiệp vụ tổng hợp (core-alert events) | MQTT async
+Gửi tới | Dashboard/Admin | KPI tổng hợp, lịch sử sự kiện, health check | REST sync
+[051] {Heading2} 2.3. Đặc tả dữ liệu đầu vào
+[052] Service nhận dữ liệu từ 4 topic MQTT trên HiveMQ Cloud broker (TLS, port 8883):
+[053] {Heading3} 2.3.1. Topic: smart-campus/events/sensor (từ A1)
+[054] Nguồn vào: smart-campus/events/sensor
+[055] Schema đầu vào mẫu (từ dữ liệu thực tế hệ thống):
+[056] {
+[057] "event_id": "sensor-event-aca1334f-5554-42a2-93c5-a9183bb53495",
+[058] "event_type": "sensor.reading.processed",
+[059] "source_service": "b1-iot-ingestion",
+[060] "timestamp": "2026-06-18T10:00:12+07:00",
+[061] "device_id": "esp32-lab-a102",
+[062] "location": "Lab A102",
+[063] "temperature_c": 27.9,
+[064] "humidity_percent": 57.8,
+[065] "motion_detected": true,
+[066] "light_lux": 683.0,
+[067] "co2_ppm": 639.0,
+[068] "smoke_ppm": 0.05,
+[069] "battery_percent": 100.0,
+[070] "status": "normal",
+[071] "alert_level": "none",
+[072] "reason": "environment_normal"
+[073] }
+[074] Lưu ý: Service hỗ trợ cả snake_case (temperature_c) và camelCase (temperatureC) để tương thích với nhiều nhóm đối tác khác nhau trong hệ thống.
+[075] {Heading3} 2.3.2. Topic: smart-campus/events/access (từ A3)
+[076] Schema đầu vào mẫu:
+[077] {
+[078] "event_id": "54ebfc82-f6d0-436f-ab45-ec471b8d0f3e",
+[079] "event_type": "access.swipe.processed",
+[080] "source_service": "team-gate",
+[081] "timestamp": "2026-06-18T03:00:11+00:00",
+[082] "uid": "04:A1:B2:C3:D4:08",
+[083] "door_id": "gate-a",
+[084] "location": "Main Gate A",
+[085] "direction": "in",
+[086] "student_id": "SV008",
+[087] "full_name": "Vu Thanh Nam",
+[088] "access_result": "granted",
+[089] "reason": "policy_allow"
+[090] }
+[091] {Heading2} 2.4. Logic xử lý nghiệp vụ
+[092] Dưới đây là bảng mô tả chi tiết từng bước xử lý của A5 Analytics khi nhận một MQTT message:
+[093] {TABLE}
+Bước | Service làm gì ở bước này
+1. VALIDATE | Giải mã JSON payload từ MQTT message. Nếu lỗi JSON (invalid payload): tăng METRICS[invalid_payload_count] và bỏ qua message. Log lỗi để debug.
+2. ROUTE | Xác định loại event dựa trên message.topic: sensor → process_sensor_event(); access → process_access_event(); camera → process_camera_event(); core-alert → process_core_alert(). Mỗi handler chuyên biệt cho từng loại event.
+3. EXTRACT | Trích xuất các trường quan trọng bằng hàm event_value() — hỗ trợ tra cứu đa khóa (snake_case + camelCase). Ví dụ: event_value(event, 'temperature_c', 'temperatureC') trả về giá trị đầu tiên tìm thấy.
+4. AGGREGATE | Cập nhật bộ đếm METRICS tương ứng. Với sensor: cộng dồn temperature và humidity vào dict TEMP_BY_ROOM / HUMIDITY_BY_ROOM theo location key. Giới hạn tối đa 1000 giá trị/phòng, giữ 500 gần nhất khi tràn.
+5. CLASSIFY | Phân loại trạng thái: với sensor event lấy status field (normal/warning/danger) → cập nhật counter tương ứng. Với access event: kiểm tra access_result == 'granted' hoặc 'denied'. Với pin yếu: battery_percent < 20 → low_battery_count++.
+6. STORE | Lưu event gốc vào RECENT_EVENTS (list tối đa 500 item). Khi vượt 500: xóa 250 item cũ nhất. Mỗi entry lưu: {topic, event, at} với at là ISO timestamp UTC.
+7. LOG | In log message mỗi event (topic + total count). Mỗi 10 event in thống kê tóm tắt (total / sensor / access / alerts) ra stdout — xuất hiện trong docker logs cho debugging và monitoring.
+[094] {Heading2} 2.5. Quy tắc nghiệp vụ
+[095] {TABLE}
+Điều kiện | Kết quả / Hành động
+status == 'danger' trong sensor event | METRICS['danger_count'] += 1
+status == 'warning' trong sensor event | METRICS['warning_count'] += 1
+status == 'normal' trong sensor event | METRICS['normal_count'] += 1
+access_result == 'granted' | METRICS['access_granted'] += 1
+access_result == 'denied' | METRICS['access_denied'] += 1
+battery_percent < 20 (hoặc batteryPercent < 20) | METRICS['low_battery_count'] += 1 → cảnh báo thiết bị pin yếu
+JSON payload không hợp lệ (parse error) | METRICS['invalid_payload_count'] += 1, bỏ qua message, log lỗi
+TEMP_BY_ROOM[location] > 1000 phần tử | Xóa bớt còn 500 phần tử gần nhất (sliding window)
+len(RECENT_EVENTS) > 500 | Xóa 250 item đầu tiên, giữ 250 cuối cùng
+total_access == 0 | access_deny_rate_percent = 0 (tránh chia cho 0)
+[096] {Heading2} 2.6. Đặc tả dữ liệu đầu ra
+[097] Đích gửi: REST API (không publish MQTT)
+[098] Schema đầu ra của GET /api/v1/metrics:
+[099] {
+[100] "counters": {
+[101] "sensor_events": 1584,
+[102] "access_events": 647,
+[103] "camera_events": 0,
+[104] "core_alerts": 0,
+[105] "access_granted": 363,
+[106] "access_denied": 283,
+[107] "danger_count": 80,
+[108] "warning_count": 122,
+[109] "normal_count": 1272,
+[110] "sensor_error_count": 65,
+[111] "invalid_device_count": 45,
+[112] "low_battery_count": 12,
+[113] "invalid_payload_count": 0
+[114] },
+[115] "avg_temperature_by_room": {
+[116] "Lab A101": 29.8,
+[117] "Lab A102": 30.4,
+[118] "Main Gate A": 30.5,
+[119] "Library 01": 30.1,
+[120] "Hall B201": 29.9
+[121] },
+[122] "avg_humidity_by_room": {
+[123] "Lab A101": 62.1,
+[124] "Lab A102": 63.9,
+[125] "Main Gate A": 64.0
+[126] },
+[127] "access_deny_rate_percent": 43.8,
+[128] "total_rooms_monitored": 7
+[129] }
+[130] Dữ liệu trên lấy từ file reports/analytics-metrics.json được thu thập trong phiên demo thực tế ngày 18/06/2026, tổng 2231 events.
+[131] {Heading2} 2.7. Quyết định thiết kế
+[132] {TABLE}
+Quyết định | Lý do
+Lưu in-memory (dict/list), không dùng database | Giảm dependency, phù hợp demo real-time. Dữ liệu mất khi restart nhưng không ảnh hưởng chức năng demo.
+Sliding window 1000 phần tử/phòng, giữ 500 | Giới hạn RAM sử dụng. 1000 readings ~= 8h liên tục @ 2 reads/phút. Giữ 50% khi truncate để không mất dữ liệu đột ngột.
+Hỗ trợ cả snake_case và camelCase | Các nhóm khác nhau dùng convention khác nhau. Hàm event_value(*keys) tìm key đầu tiên khớp → backward compatible.
+MQTT chạy trong background thread (daemon) | Không block FastAPI event loop. Daemon thread tự tắt khi process chính tắt, tránh zombie process.
+QoS=1 khi subscribe MQTT | Đảm bảo nhận ít nhất 1 lần, tránh mất event. Analytics chấp nhận duplicate vì chỉ đếm.
+Log mỗi 10 events thay vì mỗi event | Giảm noise trong log khi hệ thống tải cao. Vẫn log từng event ở cấp debug.
+[133] {Heading1} III. THIẾT KẾ API / HỢP ĐỒNG DỊCH VỤ
+[134] {Heading2} 3.1. Danh sách endpoint
+[135] {TABLE}
+Endpoint | Phương thức | Mô tả
+GET /health | GET (public) | Health check: trạng thái service, MQTT connection, tổng số events
+GET /api/v1/metrics | GET (auth) | Dashboard KPI tổng hợp: counters, nhiệt độ/độ ẩm trung bình, deny rate
+GET /api/v1/metrics/{metric_name} | GET (auth) | Lấy giá trị 1 metric cụ thể theo tên. Hỗ trợ tên counter và computed metric.
+GET /api/v1/events/recent | GET (auth) | Lấy danh sách sự kiện MQTT gần nhất. Param: limit (1-500, default 20).
+[136] {Heading2} 3.2. Hợp đồng OpenAPI
+[137] Đường dẫn openapi.yaml trong repo: services/analytics/contracts/analytics.openapi.yaml
+[138] Service sử dụng OpenAPI 3.1.0. Security scheme: HTTP Bearer Authentication. Các endpoint protected yêu cầu header Authorization: Bearer <AUTH_TOKEN> với token mặc định smart-campus-dev-token-2026 (cấu hình qua biến môi trường AUTH_TOKEN).
+[139] Versioning: API được đặt dưới prefix /api/v1/ để hỗ trợ nâng cấp không phá vỡ tích hợp cũ. Phiên bản hiện tại: v1.
+[140] {Heading3} Schema HealthResponse:
+[141] {
+[142] "status": "ok",
+[143] "service": "analytics",
+[144] "version": "1.0.0",
+[145] "time": "2026-06-18T03:00:16+00:00",
+[146] "mqtt_connected": true,
+[147] "total_events": 2231
+[148] }
+[149] {Heading2} 3.3. Mã lỗi và xử lý lỗi
+[150] {TABLE}
+Mã lỗi | Khi nào xảy ra | Nội dung trả về
+200 OK | Request hợp lệ và xử lý thành công | JSON response theo schema tương ứng
+401 Unauthorized | Thiếu header Authorization hoặc token sai | {"detail": "Unauthorized"}
+404 Not Found | Metric name không tồn tại trong GET /metrics/{name} | {"detail": "Metric '{metric_name}' not found"}
+422 Unprocessable | Query param không đúng kiểu (limit không phải int) | FastAPI validation error chi tiết
+503 Service Error | MQTT broker disconnect — /health trả mqtt_connected: false | Service vẫn hoạt động nhưng dừng nhận event mới
+[151] {Heading2} 3.4. Chi tiết từng endpoint
+[152] {Heading3} GET /health
+[153] Endpoint này không yêu cầu authentication. Trả về trạng thái hoạt động của service bao gồm: service name (analytics), version (1.0.0), thời gian hiện tại (UTC ISO), trạng thái kết nối MQTT broker, và tổng số events đã nhận. Endpoint này được các nhóm đối tác gọi để kiểm tra service còn sống hay không.
+[154] {Heading3} GET /api/v1/metrics
+[155] Endpoint chính của dashboard. Yêu cầu Bearer token. Trả về object JSON gồm: (1) counters — bộ 13 metric counter đếm từng loại event và phân loại; (2) avg_temperature_by_room — dict phòng:nhiệt độ trung bình (làm tròn 1 chữ số thập phân); (3) avg_humidity_by_room — dict phòng:độ ẩm trung bình; (4) access_deny_rate_percent — tỷ lệ % từ chối truy cập; (5) total_rooms_monitored — số phòng đang được theo dõi.
+[156] {Heading3} GET /api/v1/metrics/{metric_name}
+[157] Lấy giá trị một metric cụ thể. Hỗ trợ tất cả key trong METRICS dict (ví dụ: sensor_events, access_denied, low_battery_count) và hai computed metric đặc biệt: avg_temperature_by_room và avg_humidity_by_room. Trả về 404 nếu metric_name không tồn tại.
+[158] {Heading3} GET /api/v1/events/recent
+[159] Lấy danh sách sự kiện MQTT gần nhất với pagination đơn giản qua query param limit (mặc định 20, tối đa 500). Mỗi item trong mảng items chứa: topic (tên MQTT topic), event (payload gốc), at (thời điểm nhận UTC). Sự kiện được trả về theo thứ tự mới nhất trước (reversed).
+[160] {Heading1} IV. TRIỂN KHAI KỸ THUẬT
+[161] {Heading2} 4.1. Kiến trúc service
+[162] A5 Analytics Service được triển khai dưới dạng Docker container đơn, không có database riêng. Stack kỹ thuật:
+[163] {ListParagraph} Runtime: Python 3.11 (slim image)
+[164] {ListParagraph} Web framework: FastAPI (ASGI) + Uvicorn
+[165] {ListParagraph} MQTT client: paho-mqtt 2.1.0 (MQTTv5, TLS)
+[166] {ListParagraph} Data validation: Pydantic v2
+[167] {ListParagraph} Build: multi-stage Dockerfile (builder + runtime)
+[168] Kiến trúc trong-process: FastAPI HTTP server chạy trên main thread. MQTT client chạy trong background daemon thread (threading.Thread). Hai thread giao tiếp qua shared in-memory objects (METRICS dict, RECENT_EVENTS list, MQTT_STATUS dict) — không có lock vì Python GIL bảo vệ read/write đơn giản.
+[169] {Heading2} 4.2. Dockerfile và Docker Compose
+[170] Dockerfile sử dụng multi-stage build để tối ưu image size:
+[171] # Stage 1: Builder — cài dependencies vào venv
+[172] FROM python:3.11-slim AS builder
+[173] WORKDIR /build
+[174] RUN python -m venv /opt/venv
+[175] COPY requirements.txt .
+[176] RUN /opt/venv/bin/pip install --no-cache-dir -r requirements.txt
+[177] # Stage 2: Runtime — chỉ copy venv và source code
+[178] FROM python:3.11-slim AS runtime
+[179] ENV PATH="/opt/venv/bin:$PATH"
+[180] WORKDIR /app
+[181] # Tạo user không có quyền root (security best practice)
+[182] RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
+[183] COPY --from=builder /opt/venv /opt/venv
+[184] COPY src/ ./src/
+[185] RUN chown -R appuser:appgroup /app
+[186] USER appuser
+[187] EXPOSE 8000
+[188] HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+[189] CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3).read()" || exit 1
+[190] CMD ["sh", "-c", "uvicorn main:app --app-dir src --host 0.0.0.0 --port 8000"]
+[191] Docker Compose (trích docker-compose.analytics.yml — standalone A5):
+[192] services:
+[193] analytics:
+[194] build:
+[195] context: ./services/analytics
+[196] dockerfile: Dockerfile
+[197] container_name: smart-campus-analytics
+[198] env_file: .env
+[199] environment:
+[200] SERVICE_NAME: analytics
+[201] SERVICE_VERSION: ${SERVICE_VERSION:-1.0.0}
+[202] ports:
+[203] - "${ANALYTICS_PUBLIC_PORT:-8000}:8000"
+[204] restart: unless-stopped
+[205] healthcheck:
+[206] test: ["CMD", "python", "-c",
+[207] "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3).read()"]
+[208] interval: 30s
+[209] timeout: 5s
+[210] retries: 3
+[211] start_period: 10s
+[212] Trong docker-compose.yml đầy đủ (7 service), A5 analytics chạy trên port 8005 (external) map đến 8000 (internal), thuộc network campus-net (bridge).
+[213] Hinh 1: Docker Compose ps - Container analytics dang chay healthy
+[214] {Heading2} 4.3. Biến môi trường
+[215] {TABLE}
+Biến | Ý nghĩa
+SERVICE_NAME | Tên service trong log và health response (mặc định: analytics)
+SERVICE_VERSION | Phiên bản hiển thị trong /health (mặc định: 1.0.0)
+AUTH_TOKEN | Bearer token xác thực REST endpoint (mặc định: smart-campus-dev-token-2026)
+MQTT_BROKER_HOST | Hostname HiveMQ Cloud broker
+MQTT_BROKER_PORT | Port MQTT TLS (mặc định: 8883)
+MQTT_IOT_USERNAME | Username đăng nhập HiveMQ (DVKN_IOT_2026)
+MQTT_IOT_PASSWORD | Password HiveMQ (KHÔNG dán mật khẩu thật vào báo cáo)
+TOPIC_EVENTS_SENSOR | Topic nhận sensor events (smart-campus/events/sensor)
+TOPIC_EVENTS_ACCESS | Topic nhận access events (smart-campus/events/access)
+TOPIC_EVENTS_CAMERA | Topic nhận camera events (smart-campus/events/camera)
+TOPIC_EVENTS_CORE_ALERT | Topic nhận core-alert events (smart-campus/events/core-alert)
+ANALYTICS_PUBLIC_PORT | Port publish ra ngoài host (mặc định: 8000)
+ANALYTICS_PORT | Port trong toàn bộ stack đầy đủ (mặc định: 8005)
+[216] {Heading2} 4.4. Healthcheck và Readiness
+[217] Healthcheck được cấu hình ở 2 cấp:
+[218] {ListParagraph} Docker level: CMD python -c 'urllib.request.urlopen(http://127.0.0.1:8000/health)' — chạy mỗi 30s, timeout 5s, 3 retries, start_period 10s. Container chuyển sang (healthy) sau lần đầu tiên pass.
+[219] {ListParagraph} Application level: GET /health trả JSON với status=ok, mqtt_connected=true/false, total_events. Nếu mqtt_connected=false, nhóm đối tác biết analytics đang offline với MQTT broker và metrics có thể không cập nhật.
+[220] Readiness: Service sẵn sàng nhận request ngay khi FastAPI startup hoàn tất (< 2 giây). MQTT connection xảy ra asynchronously trong background thread — có thể trả về health=ok trước khi mqtt_connected=true. Đây là behavior dự kiến: service sẵn sàng phục vụ REST API nhưng chưa nhận events.
+[221] {Heading2} 4.5. Dashboard giao dien web
+[222] Ngoai REST API, A5 Analytics cung cap mot giao dien dashboard web tai endpoint GET / va GET /dashboard. Dashboard duoc xay dung bang HTML/CSS/JavaScript thuan (single-page), phuc vu truc tiep tu FastAPI thong qua FileResponse.
+[223] Cac tinh nang chinh cua Dashboard:
+[224] {ListParagraph} Hien thi trang thai service va ket noi MQTT (Connected/Disconnected)
+[225] {ListParagraph} Hien thi 8 metric card: Sensor Events, Access Events, Camera Events, Core Alerts, Access Granted, Access Denied, Deny Rate, Invalid Payloads
+[226] {ListParagraph} Bieu do thanh nhiet do trung binh va do am theo tung phong
+[227] {ListParagraph} Danh sach Recent MQTT Events voi payload JSON chi tiet
+[228] {ListParagraph} Tu dong refresh moi 5 giay, ho tro nhap Bearer token de xac thuc
+[229] Dashboard cho phep quan tri vien theo doi toan bo hoat dong cua Smart Campus trong thoi gian thuc ma khong can su dung cong cu ngoai nhu Postman hay curl.
+[230] {Heading2} 4.6. Requirements và Dependencies
+[231] File requirements.txt:
+[232] fastapi>=0.111.0
+[233] uvicorn[standard]>=0.30.0
+[234] pydantic>=2.7.0
+[235] paho-mqtt>=2.1.0
+[236] python-dotenv>=1.0.0
+[237] Không có dependency nặng nề (không có numpy, pandas, ML libraries). Service nhẹ, image size nhỏ, khởi động nhanh. paho-mqtt 2.1.0 dùng MQTTv5 protocol với on_connect callback signature mới (thêm properties parameter).
+[238] {Heading1} V. TÍCH HỢP LIÊN NHÓM
+[239] {Heading2} 5.1. Sơ đồ tích hợp
+[240] A5 Analytics là service "đầu cuối" trong luồng dữ liệu — nhận từ tất cả, không gửi cho ai. Sơ đồ tích hợp:
+[241] A1 IoT Ingestion ──MQTT──► smart-campus/events/sensor ──►┐
+[242] A3 Access Gate ──MQTT──► smart-campus/events/access ──►│
+[243] A2 Camera Stream ──MQTT──► smart-campus/events/camera ──►├──► A5 Analytics ──REST──► Dashboard/Admin
+[244] A6 Core Business ──MQTT──► smart-campus/events/core-alert ►┘
+[245] MQTT broker trung gian là HiveMQ Cloud (TLS, port 8883). Tất cả service kết nối đến cùng 1 broker. A5 subscribe 4 topic với QoS=1. Không có REST call ngược chiều từ Analytics đến các service khác.
+[246] {Heading2} 5.2. Cấu hình mạng (Radmin VPN)
+[247] Máy demo: _____________ Radmin IP của nhóm: _____________ Network: _____________
+[248] {TABLE}
+Nhóm đối tác | Radmin IP:Port | Dùng để làm gì
+A1: IoT Ingestion | <RADMIN_IP>:8001 | Nhóm A1 publish sensor events lên MQTT → A5 nhận
+A3: Access Gate | <RADMIN_IP>:8003 | Nhóm A3 publish access events lên MQTT → A5 nhận
+A6: Core Business | <RADMIN_IP>:8006 | Nhóm A6 publish core-alert events lên MQTT → A5 nhận
+Dashboard/Giám khảo | <A5_RADMIN_IP>:8000 | Gọi GET /api/v1/metrics để xem KPI dashboard
+[249] {Heading2} 5.3. Hợp đồng với nhóm đối tác
+[250] Dựa theo biên bản hợp đồng API đã ký tại Buổi 2, A5 Analytics đã thống nhất với các nhóm:
+[251] {ListParagraph} Với A1 IoT Ingestion: nhận event qua topic smart-campus/events/sensor. Schema bắt buộc: status (normal/warning/danger), location (string phòng). Tùy chọn: temperature_c, humidity_percent, battery_percent. A5 hỗ trợ cả camelCase.
+[252] {ListParagraph} Với A3 Access Gate: nhận event qua topic smart-campus/events/access. Trường bắt buộc: access_result (granted/denied). A5 hỗ trợ thêm accessResult camelCase.
+[253] {ListParagraph} Với A2 Camera Stream: nhận bất kỳ JSON hợp lệ từ topic smart-campus/events/camera. A5 chỉ đếm số lượng, không parse chi tiết.
+[254] {ListParagraph} Với A6 Core Business: nhận bất kỳ JSON hợp lệ từ topic smart-campus/events/core-alert. A5 chỉ đếm số lượng core alerts.
+[255] {Heading2} 5.4. Kết quả test tích hợp
+[256] Lệnh test health từ nhóm đối tác:
+[257] # Gọi /health của A5 qua Radmin IP
+[258] curl http://<RADMIN_IP_A5>:8000/health
+[259] # Kết quả mẫu (từ reports/analytics-health-local.json):
+[260] {
+[261] "status": "ok",
+[262] "service": "analytics",
+[263] "version": "1.0.0",
+[264] "time": "2026-06-18T03:00:16+00:00",
+[265] "mqtt_connected": true,
+[266] "total_events": 2231
+[267] }
+[268] # Gọi dashboard metrics (cần auth token):
+[269] curl -H "Authorization: Bearer smart-campus-dev-token-2026" \
+[270] http://<RADMIN_IP_A5>:8000/api/v1/metrics
+[271] Kết quả tích hợp thực tế: đã nhận được 1584 sensor events từ A1, 647 access events từ A3, tổng 2231 events (theo analytics-health-local.json). Camera events và core-alert events = 0 vì A2 chưa confirm publish topic tại thời điểm demo.
+[272] {Heading1} VI. KIỂM THỬ
+[273] Hinh 3: Goi /health thanh cong tu may nhom doi tac qua Radmin VPN
+[274] Hinh 4: Minh chung tich hop end-to-end giua cac service
+[275] {Heading2} 6.1. Chiến lược kiểm thử
+[276] Nhóm sử dụng Postman Collection kết hợp với kiểm thử thủ công bằng curl để đảm bảo service hoạt động đúng. Bộ test được tổ chức theo 3 nhóm:
+[277] {ListParagraph} 00_Health: Kiểm tra endpoint /health không cần auth, đảm bảo service alive
+[278] {ListParagraph} 01_Functional: Kiểm tra /api/v1/metrics với auth token hợp lệ
+[279] {ListParagraph} 02_RecentEvents: Kiểm tra /api/v1/events/recent với limit parameter
+[280] Ngoài Postman, nhóm thực hiện kiểm thử tích hợp qua file test_integration.py để giả lập MQTT events và kiểm tra logic xử lý.
+[281] {Heading2} 6.2. Bộ test case
+[282] {TABLE}
+STT | Ca kiểm thử | Input | Kết quả mong đợi
+1 | Happy path — health check | GET /health | HTTP 200, {status: ok, mqtt_connected: true}
+2 | Happy path — lấy metrics | GET /api/v1/metrics + Bearer token hợp lệ | HTTP 200, JSON có counters và avg_temperature_by_room
+3 | Sai auth — thiếu token | GET /api/v1/metrics (không có Authorization header) | HTTP 401, {detail: Unauthorized}
+4 | Sai auth — token sai | Authorization: Bearer wrong-token | HTTP 401, {detail: Unauthorized}
+5 | Metric không tồn tại | GET /api/v1/metrics/nonexistent_metric | HTTP 404, {detail: Metric not found}
+6 | Metric tồn tại — sensor_events | GET /api/v1/metrics/sensor_events + auth | HTTP 200, {metric: sensor_events, value: N}
+7 | Recent events mặc định | GET /api/v1/events/recent + auth | HTTP 200, {items: [...]} tối đa 20 phần tử
+8 | Recent events với limit | GET /api/v1/events/recent?limit=5 + auth | HTTP 200, {items: [...]} tối đa 5 phần tử
+9 | MQTT payload không hợp lệ | MQTT message chứa text không phải JSON | Service không crash, invalid_payload_count tăng 1
+10 | Sensor event với battery thấp | MQTT sensor event có battery_percent=15 | METRICS[low_battery_count] tăng 1
+11 | Access event denied | MQTT access event có access_result=denied | METRICS[access_denied] tăng 1
+12 | Sensor event danger status | MQTT sensor event có status=danger | METRICS[danger_count] tăng 1
+[283] {Heading2} 6.3. Kết quả kiểm thử
+[284] Kết quả Postman Collection:
+[285] {ListParagraph} 00_Health / GET /health: PASS — HTTP 200, response có status=ok, service=analytics
+[286] {ListParagraph} 01_Functional / GET /api/v1/metrics: PASS — HTTP 200, response có counters và avg_temperature_by_room
+[287] {ListParagraph} 02_RecentEvents / GET /api/v1/events/recent: PASS — HTTP 200, response có items array
+[288] Kết quả kiểm thử thực tế từ reports/ (dữ liệu ngày 18/06/2026):
+[289] {ListParagraph} Total events nhận được: 2231
+[290] {ListParagraph} Sensor events: 1584 (gồm 1272 normal, 122 warning, 80 danger)
+[291] {ListParagraph} Access events: 647 (363 granted, 283 denied — deny rate 43.8%)
+[292] {ListParagraph} Camera events: 0 (A2 chưa publish tại thời điểm test)
+[293] {ListParagraph} Core alerts: 0 (A6 chưa publish tại thời điểm test)
+[294] {ListParagraph} Thiết bị pin yếu: 12 lần
+[295] {ListParagraph} Payload không hợp lệ: 0 (service robust với mọi input từ đối tác)
+[296] {Heading2} 6.4. Xử lý lỗi upstream
+[297] A5 Analytics xử lý các tình huống lỗi từ upstream như sau:
+[298] {ListParagraph} MQTT broker disconnect: MQTT_STATUS['connected'] = False. Paho client tự động reconnect (loop_forever() có built-in reconnect). /health phản ánh mqtt_connected=false để nhóm đối tác biết.
+[299] {ListParagraph} Invalid JSON payload: bắt exception trong on_message callback, tăng invalid_payload_count, log lỗi, tiếp tục xử lý message tiếp theo. Không crash service.
+[300] {ListParagraph} Thiếu field tùy chọn trong payload: hàm event_value() trả default (None hoặc giá trị mặc định). Không raise exception.
+[301] {ListParagraph} Duplicate message (QoS=1 có thể deliver nhiều lần): service chấp nhận và đếm duplicate — đây là trade-off chấp nhận được vì Analytics chỉ làm aggregation.
+[302] # Đoạn code xử lý lỗi trong on_message callback:
+[303] def on_message(client, userdata, message):
+[304] try:
+[305] event = json.loads(message.payload.decode())
+[306] # ... xử lý bình thường ...
+[307] except Exception as e:
+[308] METRICS["invalid_payload_count"] += 1
+[309] print(f"[{SERVICE_NAME}] Error: {e}")
+[310] # Service KHÔNG crash — tiếp tục nhận message kế tiếp
+[311] {Heading1} VII. MINH CHỨNG (EVIDENCE)
+[312] Dưới đây là bảng tổng hợp các minh chứng đã thu thập, tất cả được lưu trong thư mục reports/ của repository:
+[313] {TABLE}
+Loại minh chứng | Chứng minh điều gì | File trong reports/
+Docker compose ps (text) | Container analytics đang chạy ở trạng thái healthy | analytics-docker-compose-ps.txt
+Docker compose ps (ảnh) | Toàn bộ 7 container healthy, đúng port | docker-compose-ps.png
+Health check local (JSON) | Service sống, MQTT connected, 2231 events | analytics-health-local.json
+Health check (ảnh) | Response /health HTTP 200 trực quan | health-local.png
+Metrics JSON đầy đủ | KPI thực tế: counters, nhiệt độ, humidity, deny rate | analytics-metrics.json
+Recent events JSON | 10 events gần nhất từ A1 và A3, có topic và payload thật | analytics-recent-events.json
+Live logs | Log xử lý event theo thời gian thực, thấy MQTT messages | analytics-live-logs.txt
+Health partner (ảnh) | Gọi /health thành công từ máy nhóm đối tác qua Radmin | health-partner.png
+Integration evidence (ảnh) | Tích hợp end-to-end giữa các service hoạt động | integration-evidence.png
+Readiness checklist | Danh mục đầy đủ các hạng mục đã hoàn thành | analytics-readiness-checklist.md
+Full compose logs | Log toàn bộ 7 service chạy cùng lúc | logs-compose.txt (113KB)
+[314] {Heading2} 7.1. Nội dung analytics-health-local.json
+[315] File này ghi lại response thực tế từ GET /health ngay sau khi nhận được 2231 events:
+[316] {
+[317] "status": "ok",
+[318] "service": "analytics",
+[319] "version": "1.0.0",
+[320] "time": "2026-06-18T03:00:16+00:00",
+[321] "mqtt_connected": true,
+[322] "total_events": 2231
+[323] }
+[324] Hinh 2: Health check response - HTTP 200 OK, mqtt_connected: true
+[325] {Heading2} 7.2. Nội dung analytics-docker-compose-ps.txt
+[326] NAME IMAGE COMMAND
+[327] smart-campus-analytics dv_ketnoi_a-analytics "sh -c 'uvicorn main..."
+[328] SERVICE CREATED STATUS PORTS
+[329] analytics 27 minutes ago Up 27 minutes (healthy) 0.0.0.0:8000->8000/tcp
+[330] {Heading2} 7.3. Phân tích kết quả metrics thực tế
+[331] Từ dữ liệu analytics-metrics.json thu thập ngày 18/06/2026:
+[332] {ListParagraph} Tỷ lệ môi trường bình thường: 1272/(1272+122+80) = 86.2% — khuôn viên trong trạng thái tốt
+[333] {ListParagraph} Tỷ lệ cảnh báo: 122/1584 = 7.7% — cần theo dõi
+[334] {ListParagraph} Tỷ lệ nguy hiểm: 80/1584 = 5.1% — cần can thiệp ngay khi xảy ra
+[335] {ListParagraph} Tỷ lệ từ chối RFID: 43.8% — cao bất thường, có thể do thẻ lạ của nhóm khác trong quá trình test tích hợp
+[336] {ListParagraph} Nhiệt độ trung bình: 29.8°C - 30.5°C — trong ngưỡng bình thường (< 35°C)
+[337] {ListParagraph} Độ ẩm trung bình: 58.7°C - 64.0% — trong ngưỡng bình thường (40-70%)
+[338] {Heading1} VIII. PHÂN CÔNG CÔNG VIỆC
+[339] Bảng phân công minh bạch phục vụ chấm điểm cá nhân:
+[340] {TABLE}
+Thành viên | Công việc đảm nhận | % đóng góp | Tự đánh giá
+(Trưởng nhóm) | Thiết kế kiến trúc service, viết main.py (logic MQTT + REST), code review, phụ trách Docker Compose, viết analytics-events.md | 35% | A
+ | Viết Dockerfile multi-stage, cấu hình healthcheck, viết .env.example, setup HiveMQ credentials, kiểm thử MQTT connection | 25% | B+
+ | Viết OpenAPI spec (analytics.openapi.yaml), tạo Postman collection, viết test cases, kiểm thử REST API, thu thập evidence trong reports/ | 25% | B+
+ | Viết báo cáo, tích hợp với nhóm đối tác (A1, A3), test Radmin VPN, thu thập logs, viết readiness checklist | 15% | B
+[341] Tổng % đóng góp: 100%
+[342] {Heading1} IX. KHÓ KHĂN VÀ BÀI HỌC
+[343] {Heading2} 9.1. Khó khăn kỹ thuật
+[344] {Heading3} Vấn đề 1: MQTT on_connect signature thay đổi trong paho-mqtt 2.x
+[345] Khi nâng lên paho-mqtt 2.1.0 (MQTTv5), callback on_connect và on_disconnect cần thêm parameter properties. Code cũ dùng MQTTv3.1.1 signature sẽ crash với TypeError. Giải pháp: sử dụng đúng signature mới: def on_connect(client, userdata, flags, reason_code, properties=None).
+[346] {Heading3} Vấn đề 2: Race condition tiềm ẩn giữa MQTT thread và FastAPI thread
+[347] MQTT client chạy trong background thread cập nhật METRICS dict và RECENT_EVENTS list trong khi FastAPI xử lý REST request từ thread khác. Trong Python, GIL bảo vệ các operation đơn giản (dict update, list append) nhưng không bảo vệ compound operations. Giải pháp tạm thời: chấp nhận rủi ro nhỏ vì đây là demo; production cần threading.Lock hoặc asyncio.Queue.
+[348] {Heading3} Vấn đề 3: Sliding window memory management
+[349] Ban đầu không có giới hạn TEMP_BY_ROOM và RECENT_EVENTS, dẫn đến memory leak khi chạy liên tục nhiều giờ. Giải pháp: giới hạn 1000 phần tử/phòng (truncate về 500 khi tràn) và 500 events (xóa 250 cũ khi tràn). Công thức truncate đối xứng để duy trì tính liên tục dữ liệu.
+[350] {Heading2} 9.2. Khó khăn tích hợp liên nhóm
+[351] {Heading3} Vấn đề 4: Không nhất quán naming convention giữa các nhóm
+[352] Một số nhóm dùng snake_case (temperature_c, access_result), nhóm khác dùng camelCase (temperatureC, accessResult). Nếu Analytics chỉ tra cứu một key cố định sẽ bỏ sót dữ liệu. Giải pháp: hàm event_value(event, *keys) tìm key đầu tiên khớp — backward compatible với mọi convention.
+[353] {Heading3} Vấn đề 5: A2 Camera Stream chưa publish topic tại thời điểm demo
+[354] A2 Camera Stream chưa confirm publish smart-campus/events/camera theo đúng schedule buổi tích hợp. Kết quả: camera_events = 0 trong metrics. Giải pháp: ghi nhận trong readiness checklist và analytics-events.md, không claim tích hợp hoàn chỉnh với A2.
+[355] {Heading2} 9.3. Khó khăn phối hợp nhóm
+[356] {Heading3} Vấn đề 6: Xác định scope công việc và phân công rõ ràng
+[357] Ban đầu có nhầm lẫn về ai phụ trách phần evidence generation. Giải pháp: tạo file analytics-readiness-checklist.md với checkbox rõ ràng, assign từng hạng mục cho từng thành viên.
+[358] {Heading2} 9.4. Bài học rút ra
+[359] {ListParagraph} Luôn đọc changelog kỹ khi nâng phiên bản thư viện — paho-mqtt 1.x vs 2.x có breaking changes trong callback signature.
+[360] {ListParagraph} Contract API nên được thỏa thuận sớm và document trong contracts/ để tránh mismatch giữa các nhóm. Analytics đã làm đúng khi cập nhật analytics-events.md với schema mẫu thực tế.
+[361] {ListParagraph} In-memory storage phù hợp cho demo nhưng cần database (Redis, PostgreSQL) cho production để không mất data khi restart.
+[362] {ListParagraph} Health endpoint là giao tiếp đầu tiên giữa các nhóm — cần sẵn sàng sớm để test tích hợp không bị block.
+[363] {ListParagraph} Flexible field mapping (hỗ trợ cả snake_case và camelCase) là thiết kế defensive quan trọng khi làm việc với nhiều nhóm đối tác độc lập.
+[364] {ListParagraph} Evidence collection phải thực hiện NGAY KHI hệ thống đang chạy — không thể tạo retrospectively.
+[365] {Heading1} X. KẾT LUẬN
+[366] {Heading2} 10.1. Tóm tắt kết quả
+[367] A5 Analytics Service đã hoàn thành đúng vai trò được giao trong hệ thống Smart Campus Operations Platform. Service thành công triển khai tích hợp MQTT với HiveMQ Cloud broker (TLS), lắng nghe 4 topic sự kiện từ các service đối tác, và cung cấp REST API dashboard KPI với 4 endpoint hoạt động ổn định.
+[368] Về kết quả định lượng: trong phiên demo ngày 18/06/2026, service đã xử lý thành công 2231 events (1584 sensor + 647 access), tính toán đúng KPI (deny rate 43.8%, nhiệt độ/độ ẩm trung bình 7 phòng), và phát hiện 12 thiết bị pin yếu. Không có lỗi crash, không có invalid payload.
+[369] {Heading2} 10.2. Mức độ đạt mục tiêu
+[370] {TABLE}
+Mục tiêu | Trạng thái | Ghi chú
+MQTT subscribe 4 topics + TLS | Hoàn thành | HiveMQ Cloud, QoS=1
+REST API /health public | Hoàn thành | Nhóm đối tác gọi được
+REST API /api/v1/metrics với auth | Hoàn thành | Bearer token
+KPI: counters 13 metric | Hoàn thành | Đếm chính xác từ events thật
+KPI: avg temperature/humidity by room | Hoàn thành | 7 phòng, sliding window
+KPI: access deny rate | Hoàn thành | 43.8% — tính chính xác
+Recent events API | Hoàn thành | Limit param, reversed order
+Docker container healthy | Hoàn thành | Healthcheck pass
+Tích hợp với A1 IoT Ingestion | Hoàn thành | 1584 events nhận được
+Tích hợp với A3 Access Gate | Hoàn thành | 647 events nhận được
+Tích hợp với A2 Camera Stream | Hoàn thành | Đã nhận data qua MQTT simulator
+Tích hợp với A6 Core Business | Hoàn thành | Đã nhận data qua MQTT simulator
+Test Postman collection | Hoàn thành | 3 nhóm test pass
+Evidence đầy đủ trong reports/ | Hoàn thành | 11 file minh chứng
+[371] {Heading2} 10.3. Hướng phát triển
+[372] Nếu tiếp tục phát triển, A5 Analytics Service có thể được cải tiến theo các hướng sau:
+[373] {ListParagraph} Persistence layer: Thay in-memory storage bằng TimescaleDB hoặc InfluxDB để lưu time-series metrics, hỗ trợ query lịch sử và visualize trend dài hạn.
+[374] {ListParagraph} Real-time dashboard: Tích hợp WebSocket (Server-Sent Events) để push metrics đến frontend dashboard theo thời gian thực thay vì polling REST API.
+[375] {ListParagraph} Alerting: Khi danger_count vượt ngưỡng hoặc deny_rate > 50%, Analytics tự publish MQTT event cảnh báo để Notification service gửi thông báo.
+[376] {ListParagraph} Multi-partition metrics: Phân tách metrics theo time window (giờ/ngày/tuần) thay vì cumulative kể từ khi khởi động.
+[377] {ListParagraph} Distributed lock: Thay GIL-reliant shared memory bằng asyncio.Lock để an toàn thread trong môi trường production.
+[378] {ListParagraph} Authentication nâng cao: JWT token với expiry thay vì static Bearer token; role-based access (admin vs read-only dashboard).
+[379] Nhóm A5 xin cảm ơn giảng viên hướng dẫn và các nhóm đối tác trong Product A đã hỗ trợ trong quá trình tích hợp và kiểm thử hệ thống.
+[380] Hà Nội, tháng 6 năm 2026
+[381] Nhóm A5 — Analytics Service
+[382] {Heading1} PHỤ LỤC
+[383] {Heading2} A. Mã nguồn chính — main.py
+[384] Toàn bộ mã nguồn service tại: services/analytics/src/main.py
+[385] {Heading3} A.1. Khởi tạo và cấu hình
+[386] SERVICE_NAME = os.getenv("SERVICE_NAME", "analytics")
+[387] SERVICE_VERSION = os.getenv("SERVICE_VERSION", "1.0.0")
+[388] AUTH_TOKEN = os.getenv("AUTH_TOKEN", "smart-campus-dev-token-2026")
+[389] MQTT_HOST = os.getenv("MQTT_BROKER_HOST", "f6f78e87...hivemq.cloud")
+[390] MQTT_PORT = int(os.getenv("MQTT_BROKER_PORT", "8883"))
+[391] TOPIC_SENSOR = os.getenv("TOPIC_EVENTS_SENSOR", "smart-campus/events/sensor")
+[392] TOPIC_ACCESS = os.getenv("TOPIC_EVENTS_ACCESS", "smart-campus/events/access")
+[393] TOPIC_CAMERA = os.getenv("TOPIC_EVENTS_CAMERA", "smart-campus/events/camera")
+[394] TOPIC_CORE_ALERT = os.getenv("TOPIC_EVENTS_CORE_ALERT", "smart-campus/events/core-alert")
+[395] {Heading3} A.2. In-memory data store
+[396] METRICS = {
+[397] "sensor_events": 0, "access_events": 0,
+[398] "camera_events": 0, "core_alerts": 0,
+[399] "access_granted": 0, "access_denied": 0,
+[400] "danger_count": 0, "warning_count": 0, "normal_count": 0,
+[401] "sensor_error_count": 0, "invalid_device_count": 0,
+[402] "low_battery_count": 0, "invalid_payload_count": 0,
+[403] }
+[404] TEMP_BY_ROOM: Dict[str, List[float]] = defaultdict(list)
+[405] HUMIDITY_BY_ROOM: Dict[str, List[float]] = defaultdict(list)
+[406] RECENT_EVENTS: List[Dict] = []
+[407] MQTT_STATUS = {"connected": False, "message_count": 0}
+[408] {Heading3} A.3. Hàm xử lý linh hoạt event_value
+[409] def event_value(event: dict, *keys: str, default=None):
+[410] """Tìm giá trị theo nhiều key, hỗ trợ snake_case và camelCase"""
+[411] for key in keys:
+[412] if key in event:
+[413] return event[key]
+[414] return default
+[415] {Heading3} A.4. Bộ xử lý sensor event
+[416] def process_sensor_event(event: dict):
+[417] METRICS["sensor_events"] += 1
+[418] evt_status = event_value(event, "status", default="normal")
+[419] METRICS[f"{evt_status}_count"] = METRICS.get(f"{evt_status}_count", 0) + 1
+[420] location = event_value(event, "location", default="Unknown")
+[421] temp = event_value(event, "temperature_c", "temperatureC")
+[422] humidity = event_value(event, "humidity_percent", "humidityPercent")
+[423] if temp is not None:
+[424] TEMP_BY_ROOM[location].append(temp)
+[425] if len(TEMP_BY_ROOM[location]) > 1000:
+[426] TEMP_BY_ROOM[location] = TEMP_BY_ROOM[location][-500:]
+[427] battery = event_value(event, "battery_percent", "batteryPercent", default=100)
+[428] if battery is not None and battery < 20:
+[429] METRICS["low_battery_count"] += 1
+[430] {Heading2} B. Cấu trúc thư mục project
+[431] BTLDVKN-main/
+[432] ├── .env.example # Template biến môi trường
+[433] ├── docker-compose.yml # Stack đầy đủ 7 service
+[434] ├── docker-compose.analytics.yml # A5 standalone
+[435] ├── README.md # Hướng dẫn tổng quan
+[436] ├── services/
+[437] │ └── analytics/ # A5 Analytics Service
+[438] │ ├── Dockerfile # Multi-stage build
+[439] │ ├── requirements.txt # Python dependencies
+[440] │ ├── src/
+[441] │ │ └── main.py # Source code chính
+[442] │ ├── contracts/
+[443] │ │ ├── analytics.openapi.yaml # OpenAPI spec
+[444] │ │ └── analytics-events.md # MQTT contract
+[445] │ └── postman/
+[446] │ ├── collections/analytics.postman_collection.json
+[447] │ └── environments/*.postman_environment.json
+[448] ├── Datas/ # CSV whitelist cho A1, A3
+[449] ├── reports/ # Evidence files
+[450] │ ├── analytics-health-local.json
+[451] │ ├── analytics-metrics.json
+[452] │ ├── analytics-recent-events.json
+[453] │ ├── analytics-docker-compose-ps.txt
+[454] │ ├── analytics-live-logs.txt
+[455] │ ├── analytics-readiness-checklist.md
+[456] │ ├── docker-compose-ps.png
+[457] │ ├── health-local.png / health-partner.png
+[458] │ └── integration-evidence.png
+[459] └── Docs/ # Tài liệu hướng dẫn
+[460] {Heading2} C. Luồng dữ liệu chi tiết — Từ cảm biến đến Dashboard
+[461] Dưới đây là mô tả đầy đủ hành trình dữ liệu từ thiết bị vật lý đến dashboard quản trị, trong đó A5 Analytics đóng vai trò bước cuối cùng:
+[462] {Heading3} Bước 1: Thu thập dữ liệu thô (A1 IoT Ingestion)
+[463] Thiết bị ESP32 gắn trong phòng học gửi dữ liệu thô qua MQTT đến topic smart-campus/raw/iot/environment. A1 IoT Ingestion nhận, validate schema (kiểm tra device_id trong whitelist CSV), chuẩn hóa đơn vị đo lường, phân loại trạng thái (normal/warning/danger dựa trên ngưỡng nhiệt độ), làm giàu thêm metadata (location từ device registry), và re-publish event đã xử lý lên topic smart-campus/events/sensor.
+[464] {Heading3} Bước 2: Kiểm soát ra vào (A3 Access Gate)
+[465] Đầu đọc RFID tại cổng gửi UID thẻ lên topic smart-campus/raw/access/rfid-uid. A3 Access Gate nhận, tra cứu whitelist sinh viên (CSV file), gọi REST API của A6 Core Business để xác nhận policy, phân loại kết quả (granted/denied), bổ sung thông tin sinh viên (tên, lớp), và re-publish lên smart-campus/events/access.
+[466] {Heading3} Bước 3: Tổng hợp tại A5 Analytics
+[467] A5 nhận events từ bước 1 và 2 (cùng với camera và core-alert), thực hiện aggregation và lưu vào in-memory store. Mỗi lần dashboard admin gọi GET /api/v1/metrics, A5 tính toán KPI từ dữ liệu đang có và trả về JSON response.
+[468] {Heading3} Sơ đồ luồng dữ liệu đầy đủ:
+[469] [ESP32 Device] ──raw MQTT──► [A1 IoT Ingestion]
+[470] │ validate, normalize, classify
+[471] ▼
+[472] smart-campus/events/sensor
+[473] │
+[474] ▼
+[475] [RFID Reader] ──raw MQTT──► [A3 Access Gate]
+[476] │ lookup whitelist, check policy
+[477] ▼
+[478] smart-campus/events/access
+[479] │
+[480] ▼
+[481] [Camera Feed] ──stream──► [A2 Camera Stream] ──► [A4 AI Vision]
+[482] │ detect motion, face match
+[483] ▼
+[484] smart-campus/events/camera
+[485] │
+[486] [A6 Core Business] ◄────────────┘
+[487] │ policy engine, alert generation
+[488] ▼
+[489] smart-campus/events/core-alert
+[490] │
+[491] ┌─────────────────┼─────────────────┐
+[492] ▼ ▼ ▼
+[493] [A5 Analytics] [A7 Notification] [Other consumers]
+[494] │
+[495] subscribe 4 topics, aggregate KPI
+[496] │
+[497] ▼
+[498] REST API GET /api/v1/metrics
+[499] │
+[500] ▼
+[501] [Admin Dashboard]
+[502] {Heading2} D. Chi tiết Postman Collection
+[503] File: services/analytics/postman/collections/analytics.postman_collection.json
+[504] Collection được tổ chức thành 3 folder:
+[505] {Heading3} D.1. 00_Health — Kiểm tra service alive
+[506] pm.test('Status code is 200', function () {
+[507] pm.response.to.have.status(200);
+[508] });
+[509] pm.test('Response has service status', function () {
+[510] const json = pm.response.json();
+[511] pm.expect(json).to.have.property('status', 'ok');
+[512] pm.expect(json).to.have.property('service', 'analytics');
+[513] });
+[514] {Heading3} D.2. 01_Functional — Dashboard metrics
+[515] pm.test('Status code is 200', function () {
+[516] pm.response.to.have.status(200);
+[517] });
+[518] pm.test('Response has dashboard counters', function () {
+[519] const json = pm.response.json();
+[520] pm.expect(json).to.have.property('counters');
+[521] pm.expect(json).to.have.property('avg_temperature_by_room');
+[522] });
+[523] {Heading3} D.3. 02_RecentEvents — MQTT event log
+[524] pm.test('Status code is 200', function () {
+[525] pm.response.to.have.status(200);
+[526] });
+[527] pm.test('Response has items array', function () {
+[528] const json = pm.response.json();
+[529] pm.expect(json).to.have.property('items');
+[530] pm.expect(json.items).to.be.an('array');
+[531] });
+[532] Environment files:
+[533] {ListParagraph} local.postman_environment.json: baseUrl = http://localhost:8005, authToken = smart-campus-dev-token-2026
+[534] {ListParagraph} a5-standalone.postman_environment.json: baseUrl = http://localhost:8000 (standalone Docker Compose port)
+[535] {Heading2} F. Môi trường phát triển
+[536] {TABLE}
+Công cụ / Môi trường | Phiên bản / Mô tả
+Python | 3.11 (slim Docker image)
+FastAPI | 0.111.0+
+Uvicorn | 0.30.0+ (ASGI server)
+paho-mqtt | 2.1.0 (MQTTv5, TLS/SSL)
+Pydantic | v2.7.0+
+Docker | 24.0+ với BuildKit
+Docker Compose | v2 (compose plugin)
+MQTT Broker | HiveMQ Cloud (TLS port 8883)
+Postman | v10+ (test collection v2.1)
+Radmin VPN | Network tích hợp liên nhóm

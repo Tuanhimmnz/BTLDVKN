@@ -1,0 +1,97 @@
+20: Heading1: I. GIỚI THIỆU
+21: Heading2: 1.1. Bối cảnh
+25: Heading2: 1.2. Mục tiêu của service
+28: Heading2: 1.3. Phạm vi
+35: ListParagraph: Cung cấp 4 REST endpoint: /health, /api/v1/metrics, /api/v1/metrics/{name}, /api/v1/events/recent
+43: Heading1: II. PHÂN TÍCH NGHIỆP VỤ
+45: Heading2: 2.1. Vai trò nghiệp vụ
+47: : Cụ thể, service thực hiện 3 vai trò nghiệp vụ chính: (1) Giám sát môi trường — theo dõi nhiệt độ và độ ẩm từng phòng theo thời gian thực, phát hiện tình trạng nguy hiểm (danger) hoặc cảnh báo (warning); (2) Giám sát an ninh — đếm lượt ra vào, tính tỷ lệ từ chối thẻ RFID, phát hiện thẻ lạ hoặc không hợp lệ; (3) Giám sát hạ tầng — theo dõi số lượng thiết bị pin yếu, payload lỗi, và kết nối MQTT broker.
+48: Heading2: 2.2. Vị trí trong kiến trúc hệ thống
+51: Heading2: 2.3. Đặc tả dữ liệu đầu vào
+53: Heading3: 2.3.1. Topic: smart-campus/events/sensor (từ A1)
+75: Heading3: 2.3.2. Topic: smart-campus/events/access (từ A3)
+91: Heading2: 2.4. Logic xử lý nghiệp vụ
+94: Heading2: 2.5. Quy tắc nghiệp vụ
+96: Heading2: 2.6. Đặc tả dữ liệu đầu ra
+131: Heading2: 2.7. Quyết định thiết kế
+133: Heading1: III. THIẾT KẾ API / HỢP ĐỒNG DỊCH VỤ
+134: Heading2: 3.1. Danh sách endpoint
+136: Heading2: 3.2. Hợp đồng OpenAPI
+140: Heading3: Schema HealthResponse:
+149: Heading2: 3.3. Mã lỗi và xử lý lỗi
+151: Heading2: 3.4. Chi tiết từng endpoint
+152: Heading3: GET /health
+154: Heading3: GET /api/v1/metrics
+156: Heading3: GET /api/v1/metrics/{metric_name}
+158: Heading3: GET /api/v1/events/recent
+160: Heading1: IV. TRIỂN KHAI KỸ THUẬT
+161: Heading2: 4.1. Kiến trúc service
+169: Heading2: 4.2. Dockerfile và Docker Compose
+175: : COPY requirements.txt .
+183: : COPY --from=builder /opt/venv /opt/venv
+184: : COPY src/ ./src/
+189: : CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3).read()" || exit 1
+190: : CMD ["sh", "-c", "uvicorn main:app --app-dir src --host 0.0.0.0 --port 8000"]
+195: : context: ./services/analytics
+197: : container_name: smart-campus-analytics
+214: Heading2: 4.3. Biến môi trường
+216: Heading2: 4.4. Healthcheck và Readiness
+221: Heading2: 4.5. Dashboard giao dien web
+223: : Cac tinh nang chinh cua Dashboard:
+230: Heading2: 4.6. Requirements và Dependencies
+238: Heading1: V. TÍCH HỢP LIÊN NHÓM
+239: Heading2: 5.1. Sơ đồ tích hợp
+246: Heading2: 5.2. Cấu hình mạng (Radmin VPN)
+249: Heading2: 5.3. Hợp đồng với nhóm đối tác
+255: Heading2: 5.4. Kết quả test tích hợp
+258: : curl http://<RADMIN_IP_A5>:8000/health
+269: : curl -H "Authorization: Bearer smart-campus-dev-token-2026" \
+272: Heading1: VI. KIỂM THỬ
+275: Heading2: 6.1. Chiến lược kiểm thử
+281: Heading2: 6.2. Bộ test case
+283: Heading2: 6.3. Kết quả kiểm thử
+292: ListParagraph: Camera events: 0 (A2 chưa publish tại thời điểm test)
+293: ListParagraph: Core alerts: 0 (A6 chưa publish tại thời điểm test)
+296: Heading2: 6.4. Xử lý lỗi upstream
+311: Heading1: VII. MINH CHỨNG (EVIDENCE)
+314: Heading2: 7.1. Nội dung analytics-health-local.json
+325: Heading2: 7.2. Nội dung analytics-docker-compose-ps.txt
+330: Heading2: 7.3. Phân tích kết quả metrics thực tế
+338: Heading1: VIII. PHÂN CÔNG CÔNG VIỆC
+342: Heading1: IX. KHÓ KHĂN VÀ BÀI HỌC
+343: Heading2: 9.1. Khó khăn kỹ thuật
+344: Heading3: Vấn đề 1: MQTT on_connect signature thay đổi trong paho-mqtt 2.x
+346: Heading3: Vấn đề 2: Race condition tiềm ẩn giữa MQTT thread và FastAPI thread
+348: Heading3: Vấn đề 3: Sliding window memory management
+350: Heading2: 9.2. Khó khăn tích hợp liên nhóm
+351: Heading3: Vấn đề 4: Không nhất quán naming convention giữa các nhóm
+353: Heading3: Vấn đề 5: A2 Camera Stream chưa publish topic tại thời điểm demo
+355: Heading2: 9.3. Khó khăn phối hợp nhóm
+356: Heading3: Vấn đề 6: Xác định scope công việc và phân công rõ ràng
+358: Heading2: 9.4. Bài học rút ra
+360: ListParagraph: Contract API nên được thỏa thuận sớm và document trong contracts/ để tránh mismatch giữa các nhóm. Analytics đã làm đúng khi cập nhật analytics-events.md với schema mẫu thực tế.
+365: Heading1: X. KẾT LUẬN
+366: Heading2: 10.1. Tóm tắt kết quả
+369: Heading2: 10.2. Mức độ đạt mục tiêu
+371: Heading2: 10.3. Hướng phát triển
+382: Heading1: PHỤ LỤC
+383: Heading2: A. Mã nguồn chính — main.py
+385: Heading3: A.1. Khởi tạo và cấu hình
+395: Heading3: A.2. In-memory data store
+408: Heading3: A.3. Hàm xử lý linh hoạt event_value
+415: Heading3: A.4. Bộ xử lý sensor event
+430: Heading2: B. Cấu trúc thư mục project
+460: Heading2: C. Luồng dữ liệu chi tiết — Từ cảm biến đến Dashboard
+462: Heading3: Bước 1: Thu thập dữ liệu thô (A1 IoT Ingestion)
+464: Heading3: Bước 2: Kiểm soát ra vào (A3 Access Gate)
+466: Heading3: Bước 3: Tổng hợp tại A5 Analytics
+468: Heading3: Sơ đồ luồng dữ liệu đầy đủ:
+502: Heading2: D. Chi tiết Postman Collection
+504: : Collection được tổ chức thành 3 folder:
+505: Heading3: D.1. 00_Health — Kiểm tra service alive
+510: : const json = pm.response.json();
+514: Heading3: D.2. 01_Functional — Dashboard metrics
+519: : const json = pm.response.json();
+523: Heading3: D.3. 02_RecentEvents — MQTT event log
+528: : const json = pm.response.json();
+535: Heading2: F. Môi trường phát triển

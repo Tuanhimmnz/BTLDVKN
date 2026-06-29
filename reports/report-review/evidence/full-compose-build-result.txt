@@ -1,0 +1,85 @@
+﻿#1 [internal] load local bake definitions
+#1 reading from stdin 3.84kB done
+#1 DONE 0.0s
+docker.exe : unable to prepare context: path "C:\\Users\\linzi\\Downloads\\lab4\\DV_KetNoi_A\\services\\camera_stream" 
+not found
+At line:19 char:15
++ ... ullBuild = (& docker compose -f docker-compose.yml build 2>&1 | Out-S ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (unable to prepa...ream" not found:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+35808 v0.30.1-desktop.1 C:\Program Files\Docker\cli-plugins\docker-buildx.exe bake --file - --progress rawjson 
+--metadata-file C:\Users\linzi\AppData\Local\Temp\compose-build-metadataFile-07694a22-fc00-449e-bab8-2685e6d5353f.json 
+--allow fs.read=C:\Users\linzi\Downloads\lab4\DV_KetNoi_A\services\analytics --allow 
+fs.read=C:\Users\linzi\Downloads\lab4\DV_KetNoi_A\services\core_business --allow 
+fs.read=C:\Users\linzi\Downloads\lab4\DV_KetNoi_A\services\notification --allow 
+fs.read=C:\Users\linzi\Downloads\lab4\DV_KetNoi_A\services\iot_ingestion --allow 
+fs.read=C:\Users\linzi\Downloads\lab4\DV_KetNoi_A\services\camera_stream --allow 
+fs.read=C:\Users\linzi\Downloads\lab4\DV_KetNoi_A\services\access_gate --allow 
+fs.read=C:\Users\linzi\Downloads\lab4\DV_KetNoi_A\services\ai_vision
+
+github.com/docker/buildx/build.loadInputs
+
+	github.com/docker/buildx/build/opt.go:543
+
+github.com/docker/buildx/build.toSolveOpt
+
+	github.com/docker/buildx/build/opt.go:365
+
+github.com/docker/buildx/build.newBuildRequests
+
+	github.com/docker/buildx/build/build.go:235
+
+github.com/docker/buildx/build.BuildWithResultHandler
+
+	github.com/docker/buildx/build/build.go:351
+
+github.com/docker/buildx/build.Build
+
+	github.com/docker/buildx/build/build.go:331
+
+github.com/docker/buildx/commands.runBake
+
+	github.com/docker/buildx/commands/bake.go:311
+
+github.com/docker/buildx/commands.bakeCmd.func1
+
+	github.com/docker/buildx/commands/bake.go:493
+
+github.com/spf13/cobra.(*Command).execute
+
+	github.com/spf13/cobra@v1.10.1/command.go:1015
+
+github.com/spf13/cobra.(*Command).ExecuteC
+
+	github.com/spf13/cobra@v1.10.1/command.go:1148
+
+github.com/spf13/cobra.(*Command).Execute
+
+	github.com/spf13/cobra@v1.10.1/command.go:1071
+
+main.runStandalone
+
+	github.com/docker/buildx/cmd/buildx/main.go:45
+
+main.run
+
+	github.com/docker/buildx/cmd/buildx/main.go:77
+
+main.main
+
+	github.com/docker/buildx/cmd/buildx/main.go:89
+
+runtime.main
+
+	runtime/proc.go:285
+
+runtime.goexit
+
+	runtime/asm_amd64.s:1693
+
+
+
+
